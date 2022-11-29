@@ -1,12 +1,12 @@
 import { makeStyles } from 'tss-react/mui'
 import { AppBar } from '@mui/material'
 
-export default function Home() {
+export default function Design() {
   const { classes } = useStyles()
   return (
     <div>
       <AppBar />
-      <h1 className={classes.title}>Homepage</h1>
+      <h1 className={classes.title}>Design</h1>
     </div>
   )
 }

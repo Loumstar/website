@@ -1,8 +1,9 @@
 import '../styles/globals.css'
-import type { AppProps } from 'next/app'
-import { ThemeProvider } from '@mui/material'
-import { MaterialTheme } from '@styles'
 import { createEmotionSsrAdvancedApproach } from 'tss-react/next'
+import type { AppProps } from 'next/app'
+import Head from 'next/head'
+import { ThemeProvider, CssBaseline } from '@mui/material'
+import { MaterialTheme } from '@styles'
 
 const { augmentDocumentWithEmotionCache, withAppEmotionCache } =
   createEmotionSsrAdvancedApproach({ key: 'css' })
@@ -11,9 +12,16 @@ export { augmentDocumentWithEmotionCache }
 
 function App({ Component, pageProps }: AppProps) {
   return (
-    <ThemeProvider theme={MaterialTheme}>
-      <Component {...pageProps} />
-    </ThemeProvider>
+    <>
+      <Head>
+        <title>Louis Manestar</title>
+        <meta name="description" content="Louis Manestar's personal website" />
+      </Head>
+      <ThemeProvider theme={MaterialTheme}>
+        <CssBaseline />
+        <Component {...pageProps} />
+      </ThemeProvider>
+    </>
   )
 }
 //You can also pass your custom App if you have one.
