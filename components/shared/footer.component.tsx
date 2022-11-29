@@ -18,6 +18,22 @@ export const Footer: React.FC<Stylable> = props => {
         columnSpacing={4}
         columns={{ xs: 1, md: 2, lg: 4 }}>
         <Grid className={classes.gridElement} item xs={1}>
+          <Typography className={classes.text} variant="body2">
+            © 2022 Louis Manestar
+          </Typography>
+          <div className={classes.iconsFlex}>
+            <Link href="https://github.com/Loumstar/">
+              <GitHubIcon className={classes.icon} />
+            </Link>
+            <Link href="https://www.instagram.com/loumstarlearjet/">
+              <InstagramIcon className={classes.icon} />
+            </Link>
+            <Link href="https://www.linkedin.com/in/louis-manestar/">
+              <LinkedInIcon className={classes.icon} />
+            </Link>
+          </div>
+        </Grid>
+        <Grid className={classes.gridElement} item xs={1}>
           <Link className={cx(classes.text, classes.link)} variant="body2">
             Hack this website!
           </Link>
@@ -48,22 +64,6 @@ export const Footer: React.FC<Stylable> = props => {
           <div className={classes.iconsFlex}>
             <Link href="https://vercel.com/">
               <VercelIcon className={classes.icon} />
-            </Link>
-          </div>
-        </Grid>
-        <Grid className={classes.gridElement} item xs={1}>
-          <Typography className={classes.text} variant="body2">
-            © 2022 Louis Manestar
-          </Typography>
-          <div className={classes.iconsFlex}>
-            <Link href="https://github.com/Loumstar/">
-              <GitHubIcon className={classes.icon} />
-            </Link>
-            <Link href="https://www.instagram.com/loumstarlearjet/">
-              <InstagramIcon className={classes.icon} />
-            </Link>
-            <Link href="https://www.linkedin.com/in/louis-manestar/">
-              <LinkedInIcon className={classes.icon} />
             </Link>
           </div>
         </Grid>
@@ -99,6 +99,6 @@ const useStyles = makeStyles()(theme => ({
     marginRight: theme.spacing(1),
   },
   link: {
-    marginBottom: theme.spacing(2),
+    marginBottom: theme.spacing(1),
   },
 }))

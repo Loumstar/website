@@ -3,7 +3,7 @@ import { makeStyles } from '@styles'
 import { AppBar, IconButton, Toolbar, Tooltip } from '@mui/material'
 import { Box } from '@mui/system'
 import { Button } from '@mui/material'
-import { Logo } from '@components/shared'
+import { Logo } from '@components/shared/icons'
 import { Stylable } from 'types/react'
 
 export const TopBar: React.FC<Stylable> = props => {
