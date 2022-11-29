@@ -109,12 +109,31 @@ export const MaterialTheme = responsiveFontSizes(
       },
     },
     typography: {
+      fontFamily: `Inter, Helvetica, Arial, sans-serif`,
+      fontSize: 14,
+      fontWeightLight: 300,
+      fontWeightRegular: 400,
+      fontWeightMedium: 700,
+      fontWeightBold: 900,
       h1: {
-        fontWeight: 'bold',
+        fontWeight: 900,
+        fontSize: 10,
       },
       h2: {
-        fontWeight: 'bold',
+        fontWeight: 900,
+        fontSize: 24
       },
+      h3: {
+        fontWeight: 500,
+      },
+      body1: {
+        fontWeight: 300,
+        fontSize: 18
+      },
+      body2: {
+        fontWeight: 300,
+        fontSize: 18
+      }
     },
     spacing: 8,
     zIndex: {

@@ -1,18 +1,103 @@
+import { NextPage } from 'next'
 import { makeStyles } from 'tss-react/mui'
-import { AppBar } from '@mui/material'
+import { loremIpsum } from 'react-lorem-ipsum'
+import { Section, TopBar } from '@components/shared'
+import { Typography } from '@mui/material'
+import { TypeAnimation } from 'react-type-animation'
 
-export default function Home() {
-  const { classes } = useStyles()
+const Home: NextPage = () => {
+  const { classes, cx } = useStyles()
+
   return (
-    <div>
-      <AppBar />
-      <h1 className={classes.title}>Homepage</h1>
-    </div>
+    <>
+      <div className={classes.page}>
+        <TopBar className={classes.navbar} />
+        <div className={classes.container}>
+          <div className={classes.titleContainer}>
+            <Typography variant="h1" className={classes.titleText}>
+              {'Hello, my name is '}
+              <span className={classes.colourfulText}>Louis.</span>
+            </Typography>
+            <div className={classes.titleText}>
+              <span>{'I am '}</span>
+              <TypeAnimation
+                sequence={[
+                  'a Musician.',
+                  1000,
+                  100,
+                  'an Engineer.',
+                  1000,
+                  100,
+                  'a Pilot.',
+                  1000,
+                  100,
+                ]}
+                speed={20}
+                deletionSpeed={60}
+                cursor={true}
+                repeat={Infinity}
+                wrapper="span"
+              />
+            </div>
+          </div>
+          <div className={classes.textContainer}>
+            <Typography
+              variant="body2"
+              className={cx(classes.textBlock, classes.intro)}>
+              {loremIpsum()}
+            </Typography>
+            <Section
+              className={cx(classes.textBlock, classes.about)}
+              title="About Me"
+              text={`${loremIpsum()}`}
+            />
+          </div>
+        </div>
+      </div>
+    </>
   )
 }
 
 const useStyles = makeStyles()(theme => ({
-  title: {
-    color: theme.palette.error.main,
+  about: {},
+  container: {
+    display: 'flex',
+    flexDirection: 'column',
+    maxWidth: '75rem',
+    padding: '2.5rem',
+    marginLeft: 'auto',
+    marginRight: 'auto',
+  },
+  intro: {},
+  navbar: {
+    backgroundColor: 'transparent',
+  },
+  page: {
+    //backgroundColor: 'rgba(255, 22, 68, 0.1)',
+    height: '100%',
+  },
+  textBlock: {
+    margin: theme.spacing(2, 0),
+  },
+  textContainer: {
+    display: 'flex',
+    flexDirection: 'column',
+    padding: '0 2.5rem',
+    marginLeft: 'auto',
+    marginRight: 'auto',
+  },
+  titleContainer: {
+    marginBottom: theme.spacing(4),
+  },
+  titleText: {
+    fontWeight: theme.typography.fontWeightBold,
+    fontSize: '2.5em',
+  },
+  colourfulText: {
+    background: '-webkit-linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
+    WebkitBackgroundClip: 'text',
+    WebkitTextFillColor: 'transparent',
   },
 }))
+
+export default Home

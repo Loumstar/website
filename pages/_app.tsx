@@ -10,7 +10,7 @@ const { augmentDocumentWithEmotionCache, withAppEmotionCache } =
 
 export { augmentDocumentWithEmotionCache }
 
-function App({ Component, pageProps }: AppProps) {
+const App = ({ Component, pageProps }: AppProps) => {
   return (
     <>
       <Head>
