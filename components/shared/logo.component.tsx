@@ -1,12 +1,17 @@
 import React from 'react'
 import { SvgIcon } from '@mui/material'
 import { Stylable } from 'types/react'
+import { makeStyles } from '@styles'
 
 export const Logo: React.FC<Stylable> = props => {
   const { className } = props
+  const { classes, cx } = useStyles()
 
   return (
-    <SvgIcon fontSize="large" viewBox="0 0 30 34" className={className}>
+    <SvgIcon
+      fontSize="inherit"
+      viewBox="0 0 30 34"
+      className={cx(className, classes.icon)}>
       <svg
         version="1.0"
         xmlns="http://www.w3.org/2000/svg"
@@ -17,7 +22,7 @@ export const Logo: React.FC<Stylable> = props => {
                      scale(0.0100000,-0.0100000)"
           fill="none"
           stroke="#FF1744"
-          strokeWidth="75px">
+          strokeWidth="85px">
           <path
             d="M266 2992 c-143 -218 -261 -406 -264 -418 -3 -18 61 -64 443 -315
 246 -162 449 -299 452 -306 3 -7 -110 -241 -251 -520 -141 -279 -256 -513
@@ -53,3 +58,9 @@ c0 -6 -36 -140 -81 -297 l-80 -286 -251 -165 c-139 -91 -259 -166 -267 -167
     </SvgIcon>
   )
 }
+
+const useStyles = makeStyles()(theme => ({
+  icon: {
+    padding: theme.spacing(0.5),
+  },
+}))

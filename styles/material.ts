@@ -1,35 +1,5 @@
 import { createTheme, responsiveFontSizes } from '@mui/material/styles'
 
-declare module '@mui/material/styles' {
-  interface Theme {
-    utils: {
-      debug: {
-        border: string
-      }
-    }
-  }
-  interface Palette {
-    user: {
-      admin: string
-      teacher: string
-    }
-  }
-  interface PaletteOptions {
-    user: {
-      admin: string
-      teacher: string
-    }
-  }
-  // allow configuration using `createTheme`
-  interface ThemeOptions {
-    utils: {
-      debug: {
-        border: string
-      }
-    }
-  }
-}
-
 // Create a theme instance.
 export const MaterialTheme = responsiveFontSizes(
   createTheme({
@@ -40,16 +10,16 @@ export const MaterialTheme = responsiveFontSizes(
       },
       mode: 'light',
       primary: {
-        main: '#0099c4',
-        light: '#1ba9d1',
-        dark: '#007393',
+        main: '#ff1644',
+        light: '#ff4469',
+        dark: '#b20f2f',
         contrastText: '#fff',
       },
       secondary: {
-        main: 'rgb(224,89,115)',
-        light: 'rgb(222, 144, 159)',
-        dark: 'rgb(219, 26, 65)',
-        contrastText: 'rgba(0, 0, 0,0.27)',
+        main: '#00b0ff',
+        light: '#33bfff',
+        dark: '#007bb2',
+        contrastText: '#fff',
       },
       info: {
         light: '#fff',
@@ -78,10 +48,6 @@ export const MaterialTheme = responsiveFontSizes(
         A200: '#aaaaaa',
         A400: '#303030',
         A700: '#616161',
-      },
-      user: {
-        admin: '#ffb0b0',
-        teacher: '#ffd8b0',
       },
       contrastThreshold: 3,
       tonalOffset: 0.2,
@@ -132,19 +98,13 @@ export const MaterialTheme = responsiveFontSizes(
       },
       body2: {
         fontWeight: 300,
-        fontSize: 18
+        fontSize: 12
       }
     },
     spacing: 8,
     zIndex: {
       appBar: 1200,
       drawer: 1100,
-    },
-    components: {},
-    utils: {
-      debug: {
-        border: '1px solid red',
-      },
     },
   }),
 )

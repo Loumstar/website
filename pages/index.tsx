@@ -1,7 +1,7 @@
 import { NextPage } from 'next'
 import { makeStyles } from 'tss-react/mui'
 import { loremIpsum } from 'react-lorem-ipsum'
-import { Section, TopBar } from '@components/shared'
+import { Section } from '@components/shared'
 import { Typography } from '@mui/material'
 import { TypeAnimation } from 'react-type-animation'
 
@@ -9,52 +9,44 @@ const Home: NextPage = () => {
   const { classes, cx } = useStyles()
 
   return (
-    <>
-      <div className={classes.page}>
-        <TopBar className={classes.navbar} />
-        <div className={classes.container}>
-          <div className={classes.titleContainer}>
-            <Typography variant="h1" className={classes.titleText}>
-              {'Hello, my name is '}
-              <span className={classes.colourfulText}>Louis.</span>
-            </Typography>
-            <div className={classes.titleText}>
-              <span>{'I am '}</span>
-              <TypeAnimation
-                sequence={[
-                  'a Musician.',
-                  1000,
-                  100,
-                  'an Engineer.',
-                  1000,
-                  100,
-                  'a Pilot.',
-                  1000,
-                  100,
-                ]}
-                speed={20}
-                deletionSpeed={60}
-                cursor={true}
-                repeat={Infinity}
-                wrapper="span"
-              />
-            </div>
-          </div>
-          <div className={classes.textContainer}>
-            <Typography
-              variant="body2"
-              className={cx(classes.textBlock, classes.intro)}>
-              {loremIpsum()}
-            </Typography>
-            <Section
-              className={cx(classes.textBlock, classes.about)}
-              title="About Me"
-              text={`${loremIpsum()}`}
-            />
-          </div>
+    <div className={classes.container}>
+      <div className={classes.titleContainer}>
+        <Typography variant="h1" className={classes.titleText}>
+          {'Hello, my name is '}
+          <span className={classes.colourfulText}>Louis.</span>
+        </Typography>
+        <div className={classes.titleText}>
+          <span>{'I am '}</span>
+          <TypeAnimation
+            sequence={[
+              'a Musician.',
+              1250,
+              'an Engineer.',
+              1250,
+              'a Pilot.',
+              1250,
+            ]}
+            speed={20}
+            deletionSpeed={40}
+            repeat={Infinity}
+            wrapper="span"
+            cursor
+          />
         </div>
       </div>
-    </>
+      <div className={classes.textContainer}>
+        <Typography
+          variant="body1"
+          className={cx(classes.textBlock, classes.intro)}>
+          {loremIpsum()}
+        </Typography>
+        <Section
+          className={cx(classes.textBlock, classes.about)}
+          title="About Me"
+          text={`${loremIpsum()}`}
+        />
+      </div>
+    </div>
   )
 }
 
@@ -63,7 +55,7 @@ const useStyles = makeStyles()(theme => ({
   container: {
     display: 'flex',
     flexDirection: 'column',
-    maxWidth: '75rem',
+    maxWidth: '70rem',
     padding: '2.5rem',
     marginLeft: 'auto',
     marginRight: 'auto',
@@ -82,7 +74,7 @@ const useStyles = makeStyles()(theme => ({
   textContainer: {
     display: 'flex',
     flexDirection: 'column',
-    padding: '0 2.5rem',
+    padding: '0 5rem',
     marginLeft: 'auto',
     marginRight: 'auto',
   },
