@@ -64,10 +64,6 @@ const useStyles = makeStyles()(theme => ({
   navbar: {
     backgroundColor: 'transparent',
   },
-  page: {
-    //backgroundColor: 'rgba(255, 22, 68, 0.1)',
-    height: '100%',
-  },
   textBlock: {
     margin: theme.spacing(2, 0),
   },

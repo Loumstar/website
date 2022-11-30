@@ -34,13 +34,22 @@ export const Footer: React.FC<Stylable> = props => {
           </div>
         </Grid>
         <Grid className={classes.gridElement} item xs={1}>
-          <Link className={cx(classes.text, classes.link)} variant="body2">
+          <Link
+            href="/contact"
+            className={cx(classes.text, classes.link)}
+            variant="body2">
             Hack this website!
           </Link>
-          <Link className={cx(classes.text, classes.link)} variant="body2">
+          <Link
+            href="/cv"
+            className={cx(classes.text, classes.link)}
+            variant="body2">
             Curriculum Vitae
           </Link>
-          <Link className={cx(classes.text, classes.link)} variant="body2">
+          <Link
+            href="/contact"
+            className={cx(classes.text, classes.link)}
+            variant="body2">
             Contact
           </Link>
         </Grid>

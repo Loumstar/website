@@ -3,12 +3,12 @@ import { NextPage } from 'next'
 import { makeStyles } from 'tss-react/mui'
 import { Typography } from '@mui/material'
 
-const Design: NextPage = () => {
+const Contact: NextPage = () => {
   const { classes } = useStyles()
   return (
     <div className={classes.container}>
       <Typography variant="h1" className={classes.titleText}>
-        <span className={classes.colourfulText}>Design.</span>
+        <span className={classes.colourfulText}>Contact.</span>
       </Typography>
     </div>
   )
@@ -34,4 +34,4 @@ const useStyles = makeStyles()(theme => ({
   },
 }))
 
-export default Design
+export default Contact

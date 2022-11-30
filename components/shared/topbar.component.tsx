@@ -23,7 +23,7 @@ export const TopBar: React.FC<Stylable> = props => {
       color="transparent"
       elevation={0}>
       <Toolbar className={cx(className, classes.toolbar)}>
-        <IconButton>
+        <IconButton disableRipple>
           <Logo className={cx(className, classes.logo)}></Logo>
         </IconButton>
         <Box>

@@ -1,18 +1,37 @@
-import { AppBar } from '@mui/material'
+import React from 'react'
+import { NextPage } from 'next'
 import { makeStyles } from 'tss-react/mui'
+import { Typography } from '@mui/material'
 
-export default function Music() {
+const Music: NextPage = () => {
   const { classes } = useStyles()
   return (
-    <div>
-      <AppBar />
-      <h1 className={classes.title}>Music</h1>
+    <div className={classes.container}>
+      <Typography variant="h1" className={classes.titleText}>
+        <span className={classes.colourfulText}>Music.</span>
+      </Typography>
     </div>
   )
 }
 
 const useStyles = makeStyles()(theme => ({
-  title: {
-    color: theme.palette.error.main,
+  container: {
+    display: 'flex',
+    flexDirection: 'column',
+    maxWidth: '70rem',
+    padding: '2.5rem',
+    marginLeft: 'auto',
+    marginRight: 'auto',
+  },
+  titleText: {
+    fontWeight: theme.typography.fontWeightBold,
+    fontSize: '2.5em',
+  },
+  colourfulText: {
+    background: '-webkit-linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
+    WebkitBackgroundClip: 'text',
+    WebkitTextFillColor: 'transparent',
   },
 }))
+
+export default Music
