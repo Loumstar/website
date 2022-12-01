@@ -3,57 +3,152 @@ import { SvgIcon } from '@mui/material'
 import { Stylable } from 'types/react'
 import { makeStyles } from '@styles'
 
-export const Logo: React.FC<Stylable> = props => {
-  const { className } = props
+interface LogoProps extends Stylable {
+  colourful: boolean
+}
+
+export const Logo: React.FC<LogoProps> = props => {
+  const { colourful, className } = props
   const { classes, cx } = useStyles()
 
   return (
     <SvgIcon
       fontSize="inherit"
-      viewBox="0 0 30 34"
+      viewBox="0 0 34 34"
       className={cx(className, classes.icon)}>
-      <svg
-        version="1.0"
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 30.000000 34.000000"
-        preserveAspectRatio="xMidYMid meet">
-        <g
-          transform="translate(0.000000,34.000000)
-                     scale(0.0100000,-0.0100000)"
-          fill="none"
-          stroke="#FF1744"
-          strokeWidth="85px">
-          <path
-            d="M266 2992 c-143 -218 -261 -406 -264 -418 -3 -18 61 -64 443 -315
-246 -162 449 -299 452 -306 3 -7 -110 -241 -251 -520 -141 -279 -256 -513
--256 -519 0 -18 1050 -909 1075 -912 19 -3 136 92 552 448 290 248 529 457
-531 465 2 8 -114 240 -257 516 -143 277 -258 506 -256 509 2 4 212 143 465
-310 406 267 461 306 457 326 -2 12 -120 200 -263 418 l-259 396 -955 0 -955 0
--259 -398z m2119 341 c-4 -16 -51 -187 -106 -380 -54 -194 -99 -355 -99 -358
-0 -3 -318 -5 -707 -5 l-708 0 -84 303 c-46 166 -94 339 -107 385 l-23 82 921
-0 920 0 -7 -27z m290 -364 l244 -374 -351 -3 c-193 -1 -352 -1 -354 1 -2 2 44
-171 101 375 58 205 105 376 105 379 0 11 8 -1 255 -378z m-2045 -8 c56 -199
-100 -365 97 -367 -2 -2 -157 -3 -344 -2 l-341 3 240 368 c133 202 242 366 244
-364 2 -1 49 -166 104 -366z m173 -618 c31 -115 66 -238 76 -275 19 -67 19 -68
-0 -58 -26 15 -792 520 -803 531 -6 5 128 9 330 9 l339 0 58 -207z m1357 195
-c0 -6 -36 -140 -81 -297 l-80 -286 -251 -165 c-139 -91 -259 -166 -267 -167
--9 -1 -135 78 -281 175 l-265 177 -77 280 c-43 154 -78 283 -78 288 0 4 311 7
-690 7 517 0 690 -3 690 -12z m724 3 c-18 -17 -836 -553 -839 -549 -3 2 134
-500 150 546 3 9 83 12 352 12 207 0 343 -4 337 -9z m-1679 -782 c216 -142 244
--163 228 -174 -61 -42 -326 -206 -328 -203 -2 2 -36 118 -75 258 -39 140 -73
-261 -75 268 -2 6 -2 12 0 12 2 0 115 -73 250 -161z m-205 -122 c39 -142 70
--265 68 -273 -2 -11 -608 -404 -623 -404 -3 0 102 214 232 475 131 261 241
-471 244 467 4 -4 39 -123 79 -265z m980 256 c0 -14 -137 -493 -142 -498 -4 -4
--298 177 -326 200 -4 3 451 304 461 305 4 0 7 -3 7 -7z m280 -466 c128 -247
-230 -450 228 -452 -3 -3 -601 376 -617 391 -2 2 1 21 7 41 6 21 39 138 73 261
-34 123 65 219 69 215 4 -4 112 -210 240 -456z m-612 46 c92 -58 170 -109 175
--113 7 -6 -339 -1258 -352 -1273 -4 -4 -85 273 -180 615 -95 342 -175 626
--177 632 -3 8 331 233 364 245 1 1 77 -47 170 -106z m539 -347 c175 -112 318
--208 317 -212 0 -10 -997 -864 -1002 -859 -6 6 353 1275 360 1275 4 0 151 -92
-325 -204z m-1093 172 c3 -13 82 -297 175 -633 94 -335 169 -610 168 -612 -4
--3 -1006 851 -1006 857 0 7 632 408 645 409 7 1 14 -9 18 -21z"
-          />
-        </g>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="-20 0 340 340">
+        <path
+          className={cx(
+            className,
+            classes.shape,
+            classes.top,
+            colourful && classes.showFill,
+          )}
+          d="M60,10L10,90h280L240,10h-180Z"
+        />
+        <path
+          className={cx(
+            className,
+            classes.shape,
+            classes.frontTriangle,
+            colourful && classes.showFill,
+          )}
+          d="M60,10l90,320L240,10h-180Z"
+        />
+        <path
+          className={cx(
+            className,
+            classes.shape,
+            classes.rightRearSupport,
+            colourful && classes.showFill,
+          )}
+          d="M250,240l-48.46782-93L150,180l100,60Z"
+        />
+        <path
+          className={cx(
+            className,
+            classes.shape,
+            classes.leftRearSupport,
+            colourful && classes.showFill,
+          )}
+          d="M50,240l48.479048-93L150,180L50,240Z"
+        />
+        <path
+          className={cx(
+            className,
+            classes.shape,
+            classes.rearTriangle,
+            colourful && classes.showFill,
+          )}
+          d="M10,90l140,90L290,90h-280Z"
+        />
+        <path
+          className={cx(
+            className,
+            classes.shape,
+            classes.base,
+            colourful && classes.showFill,
+          )}
+          d="M50,240l100,90l100-90-100-60L50,240Z"
+        />
+        <path
+          className={cx(
+            className,
+            classes.shape,
+            classes.rightFrontSupport,
+            colourful && classes.showFill,
+          )}
+          d="M150,330l100-90-48.46782-93L150,330Z"
+        />
+        <path
+          className={cx(
+            className,
+            classes.shape,
+            classes.leftFrontSupport,
+            colourful && classes.showFill,
+          )}
+          d="M150,330L50,240l48.479048-93L150,330Z"
+        />
+        <path
+          className={cx(
+            className,
+            classes.outline,
+            colourful && classes.hideOutline,
+          )}
+          d="M60,10L10,90h280L240,10h-180Z"
+        />
+        <path
+          className={cx(
+            className,
+            classes.outline,
+            colourful && classes.hideOutline,
+          )}
+          d="M60,10l90,320L240,10h-180Z"
+        />
+        <path
+          className={cx(
+            className,
+            classes.outline,
+            colourful && classes.hideOutline,
+          )}
+          d="M250,240l-48.46782-93L150,180l100,60Z"
+        />
+        <path
+          className={cx(
+            className,
+            classes.outline,
+            colourful && classes.hideOutline,
+          )}
+          d="M50,240l48.479048-93L150,180L50,240Z"
+        />
+        <path
+          className={cx(
+            className,
+            classes.outline,
+            colourful && classes.hideOutline,
+          )}
+          d="M10,90l140,90L290,90h-280Z"
+        />
+        <path
+          className={cx(className, classes.outline, colourful && classes.base)}
+          d="M50,240l100,90l100-90-100-60L50,240Z"
+        />
+        <path
+          className={cx(
+            className,
+            classes.outline,
+            colourful && classes.hideOutline,
+          )}
+          d="M150,330l100-90-48.46782-93L150,330Z"
+        />
+        <path
+          className={cx(
+            className,
+            classes.outline,
+            colourful && classes.hideOutline,
+          )}
+          d="M150,330L50,240l48.479048-93L150,330Z"
+        />
       </svg>
     </SvgIcon>
   )
@@ -62,5 +157,54 @@ c0 -6 -36 -140 -81 -297 l-80 -286 -251 -165 c-139 -91 -259 -166 -267 -167
 const useStyles = makeStyles()(theme => ({
   icon: {
     padding: theme.spacing(0.5),
+  },
+  shape: {
+    opacity: 0,
+    stroke: 'none',
+    transition: 'fill 0.2s, opacity 0.2s linear 0s',
+    '&:hover': {
+      fill: 'white',
+    },
+  },
+  outline: {
+    fill: 'none',
+    strokeWidth: '10px',
+    stroke: theme.palette.primary.main,
+    strokeLinejoin: 'round',
+    transition: 'stroke-width 0.2s linear 0s',
+  },
+  hideOutline: {
+    strokeWidth: '2px',
+    stroke: 'black',
+    strokeLinejoin: 'round',
+  },
+  showFill: {
+    opacity: '50%',
+  },
+  top: {
+    fill: theme.palette.primary.main,
+  },
+  frontTriangle: {
+    fill: theme.palette.secondary.main,
+  },
+  rearTriangle: {
+    fill: theme.palette.secondary.dark,
+  },
+  base: {
+    fill: 'none',
+    strokeWidth: '1px',
+    stroke: 'black',
+  },
+  leftFrontSupport: {
+    fill: theme.palette.grey[500],
+  },
+  leftRearSupport: {
+    fill: theme.palette.grey[700],
+  },
+  rightFrontSupport: {
+    fill: theme.palette.grey[500],
+  },
+  rightRearSupport: {
+    fill: theme.palette.grey[700],
   },
 }))

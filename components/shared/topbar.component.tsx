@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { useRouter } from 'next/router'
 import { makeStyles } from '@styles'
-import { AppBar, IconButton, Toolbar, Tooltip } from '@mui/material'
+import { AppBar, IconButton, Toolbar, Tooltip, Typography } from '@mui/material'
 import { Box } from '@mui/system'
 import { Button } from '@mui/material'
 import { Logo } from '@components/shared/icons'
@@ -9,10 +10,14 @@ import { Stylable } from 'types/react'
 export const TopBar: React.FC<Stylable> = props => {
   const { className } = props
   const { cx, classes } = useStyles()
+  const router = useRouter()
+
+  const [addColour, setAddColour] = useState(false)
+
   const links: Array<{ label: string; route: string; isDisabled: boolean }> = [
     { label: 'Music', route: '/music', isDisabled: false },
     { label: 'Design', route: '/design', isDisabled: true },
-    { label: 'Projects', route: '/projects', isDisabled: true },
+    { label: 'Software', route: '/software', isDisabled: true },
     { label: 'Contact', route: '/contact', isDisabled: true },
   ]
 
@@ -21,10 +26,14 @@ export const TopBar: React.FC<Stylable> = props => {
       className={cx(className, classes.appbar)}
       position="static"
       color="transparent"
-      elevation={0}>
+      elevation={router.pathname != '/' ? 4 : 0}>
       <Toolbar className={cx(className, classes.toolbar)}>
-        <IconButton disableRipple>
-          <Logo className={cx(className, classes.logo)}></Logo>
+        <IconButton
+          disableRipple
+          onMouseEnter={() => setAddColour(true)}
+          onMouseLeave={() => setAddColour(false)}
+          onClick={() => router.push('/')}>
+          <Logo colourful={addColour} className={cx(className, classes.logo)} />
         </IconButton>
         <Box>
           {links.map(({ label, route, isDisabled }) =>
@@ -44,7 +53,8 @@ export const TopBar: React.FC<Stylable> = props => {
               <Button
                 key={label}
                 className={cx(className, classes.button)}
-                color="primary">
+                color="primary"
+                onClick={() => router.push(route)}>
                 {label}
               </Button>
             ),
@@ -64,12 +74,11 @@ const useStyles = makeStyles()(theme => ({
     textTransform: 'capitalize',
   },
   logo: {
-    fontSize: theme.spacing(5),
+    fontSize: theme.spacing(6),
   },
   toolbar: {
-    paddingTop: theme.spacing(1),
     justifyContent: 'space-between',
     width: '100%',
-    maxWidth: '70rem',
+    maxWidth: '75rem',
   },
 }))

@@ -1,0 +1,25 @@
+<svg id="elwSdnveqiA1" 
+     xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink" 
+     viewBox="-20 0 340 340" 
+     shape-rendering="geometricPrecision" 
+     text-rendering="geometricPrecision">
+    <path d="M60,10L10,90h280L240,10h-180Z" 
+          fill="none"
+          stroke="#ff1644"
+          stroke-linejoin="round"
+          stroke-width="15px"
+    />
+    <path d="M60,10l90,320L240,10h-180Z"
+          fill="none"
+          stroke="#ff1644"
+          stroke-linejoin="round"
+          stroke-width="15px"
+    />
+    <path d="M10,90l140,90L290,90h-280Z" fill="none" stroke="#ff1644" stroke-linejoin="round" stroke-width="15px"/>
+    <path d="M50,240l100,90l100-90-100-60L50,240Z" fill="none" stroke="#ff1644" stroke-linejoin="round" stroke-width="15px"/>
+    <path d="M250,240l-48.46782-93L150,180l100,60Z" fill="none" stroke="#ff1644" stroke-linejoin="round" stroke-width="15px"/>
+    <path d="M50,240l48.479048-93L150,180L50,240Z" fill="none" stroke="#ff1644" stroke-linejoin="round" stroke-width="15px"/>
+    <path d="M150,330l100-90-48.46782-93L150,330Z" fill="none" stroke="#ff1644" stroke-linejoin="round" stroke-width="15px"/>
+    <path d="M150,330L50,240l48.479048-93L150,330Z" fill="none" stroke="#ff1644" stroke-linejoin="round" stroke-width="15px"/>
+</svg>

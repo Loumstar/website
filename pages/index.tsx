@@ -21,9 +21,15 @@ const Home: NextPage = () => {
             sequence={[
               'a Musician.',
               1250,
-              'an Engineer.',
+              'a Software Engineer.',
               1250,
               'a Pilot.',
+              1250,
+              'a Mechanical Engineer.',
+              1250,
+              'a Climber.',
+              1250,
+              'a Cyclist™.',
               1250,
             ]}
             speed={20}
@@ -55,7 +61,7 @@ const useStyles = makeStyles()(theme => ({
   container: {
     display: 'flex',
     flexDirection: 'column',
-    maxWidth: '70rem',
+    maxWidth: '75rem',
     padding: '2.5rem',
     marginLeft: 'auto',
     marginRight: 'auto',
@@ -70,9 +76,8 @@ const useStyles = makeStyles()(theme => ({
   textContainer: {
     display: 'flex',
     flexDirection: 'column',
-    padding: '0 5rem',
-    marginLeft: 'auto',
-    marginRight: 'auto',
+    padding: '0 0rem',
+    maxWidth: '60rem',
   },
   titleContainer: {
     marginBottom: theme.spacing(4),

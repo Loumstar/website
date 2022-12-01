@@ -8,7 +8,7 @@ const Design: NextPage = () => {
   return (
     <div className={classes.container}>
       <Typography variant="h1" className={classes.titleText}>
-        <span className={classes.colourfulText}>Design.</span>
+        <span className={classes.colourfulText}>Design</span>
       </Typography>
     </div>
   )

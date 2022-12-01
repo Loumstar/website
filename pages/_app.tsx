@@ -14,7 +14,6 @@ export { augmentDocumentWithEmotionCache }
 
 const App = ({ Component, pageProps }: AppProps) => {
   const { classes } = useStyles()
-
   return (
     <>
       <Head>

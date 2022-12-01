@@ -8,7 +8,7 @@ const Contact: NextPage = () => {
   return (
     <div className={classes.container}>
       <Typography variant="h1" className={classes.titleText}>
-        <span className={classes.colourfulText}>Contact.</span>
+        <span className={classes.colourfulText}>Contact</span>
       </Typography>
     </div>
   )

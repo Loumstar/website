@@ -1,3 +1,3 @@
-export { TopBar } from './topbar.component'
-export { Section } from './section.component'
-export { Footer } from './footer.component'
+export { TopBar } from './Topbar.component'
+export { Section } from './Section.component'
+export { Footer } from './Footer.component'

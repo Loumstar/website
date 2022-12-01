@@ -10,7 +10,7 @@ export const MuiIcon: React.FC<Stylable> = props => {
     <SvgIcon viewBox="0 0 36 32" className={cx(className, classes.icon)}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        width="30"
+        width="36"
         height="32"
         viewBox="0 0 36 32">
         <path

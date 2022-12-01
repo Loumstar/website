@@ -5,7 +5,7 @@ import { makeStyles } from '@styles'
 import GitHubIcon from '@mui/icons-material/GitHub'
 import InstagramIcon from '@mui/icons-material/Instagram'
 import LinkedInIcon from '@mui/icons-material/LinkedIn'
-import { TypeScriptIcon, VercelIcon, MuiIcon } from './icons'
+import { TypeScriptIcon, VercelIcon, MuiIcon, NextIcon } from './icons'
 
 export const Footer: React.FC<Stylable> = props => {
   const { className } = props
@@ -41,7 +41,7 @@ export const Footer: React.FC<Stylable> = props => {
             Hack this website!
           </Link>
           <Link
-            href="/cv"
+            href="/curriculum-vitae.pdf"
             className={cx(classes.text, classes.link)}
             variant="body2">
             Curriculum Vitae
@@ -60,6 +60,9 @@ export const Footer: React.FC<Stylable> = props => {
           <div className={classes.iconsFlex}>
             <Link href="https://www.typescriptlang.org/">
               <TypeScriptIcon className={classes.icon} />
+            </Link>
+            <Link href="https://nextjs.org/">
+              <NextIcon className={classes.icon} />
             </Link>
             <Link href="https://mui.com/">
               <MuiIcon className={classes.icon} />
