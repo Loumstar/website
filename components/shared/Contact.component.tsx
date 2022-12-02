@@ -19,12 +19,12 @@ interface ContactProps extends Stylable {
   setIsOpen: (state: boolean) => void
 }
 
-const publicKey = 'sxTfjMf44ebxvtlD8'
-const serviceId = 'service_6rvzi1u'
-const templateId = 'template_iccff3z'
-
 export const Contact: React.FC<ContactProps> = props => {
-  emailjs.init(publicKey)
+  if (!process.env.EMAILJS_PUBLIC_KEY) {
+    throw Error('EmailJS public key is missing.')
+  }
+
+  emailjs.init(process.env.EMAILJS_PUBLIC_KEY)
 
   const { isOpen, setIsOpen, className } = props
   const { classes, cx } = useStyles()
@@ -38,6 +38,12 @@ export const Contact: React.FC<ContactProps> = props => {
   const handleCloseSnackbar = () => setSnackbarOpen(false)
 
   const sendMessage = async () => {
+    if (!process.env.EMAILJS_SERVICE_ID) {
+      throw Error('EmailJS service id is missing.')
+    } else if (!process.env.EMAILJS_TEMPLATE_ID) {
+      throw Error('EmailJS template id is missing.')
+    }
+
     const templateParams: { email: string; message: string } = {
       email: emailForm,
       message: messageForm,
@@ -45,7 +51,11 @@ export const Contact: React.FC<ContactProps> = props => {
 
     handleCloseDialog()
 
-    const { status } = await emailjs.send(serviceId, templateId, templateParams)
+    const { status } = await emailjs.send(
+      process.env.EMAILJS_SERVICE_ID,
+      process.env.EMAILJS_TEMPLATE_ID,
+      templateParams,
+    )
 
     setSnackbarStatus(status)
     setSnackbarOpen(true)

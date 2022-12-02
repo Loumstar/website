@@ -1,4 +1,3 @@
-import { ThemeContext } from '@emotion/react'
 import { createTheme, responsiveFontSizes } from '@mui/material/styles'
 
 // Create a theme instance.
