@@ -4,8 +4,9 @@ import type { AppProps } from 'next/app'
 import Head from 'next/head'
 import { ThemeProvider, CssBaseline } from '@mui/material'
 import { makeStyles, MaterialTheme } from '@styles'
-import { TopBar } from '@components/shared'
+import { Contact, TopBar } from '@components/shared'
 import { Footer } from '@components/shared'
+import { useState } from 'react'
 
 const { augmentDocumentWithEmotionCache, withAppEmotionCache } =
   createEmotionSsrAdvancedApproach({ key: 'css' })
@@ -13,7 +14,11 @@ const { augmentDocumentWithEmotionCache, withAppEmotionCache } =
 export { augmentDocumentWithEmotionCache }
 
 const App = ({ Component, pageProps }: AppProps) => {
+  const [contactOpen, setContactOpen] = useState(false)
   const { classes } = useStyles()
+
+  const handleContactOpen = () => setContactOpen(true)
+
   return (
     <>
       <Head>
@@ -23,9 +28,13 @@ const App = ({ Component, pageProps }: AppProps) => {
       <ThemeProvider theme={MaterialTheme}>
         <CssBaseline />
         <div className={classes.page}>
-          <TopBar className={classes.navbar} />
+          <TopBar
+            className={classes.navbar}
+            onContactClick={handleContactOpen}
+          />
           <Component {...pageProps} />
-          <Footer />
+          <Contact isOpen={contactOpen} setIsOpen={setContactOpen} />
+          <Footer onContactClick={handleContactOpen} />
         </div>
       </ThemeProvider>
     </>

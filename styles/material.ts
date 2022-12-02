@@ -1,3 +1,4 @@
+import { ThemeContext } from '@emotion/react'
 import { createTheme, responsiveFontSizes } from '@mui/material/styles'
 
 // Create a theme instance.
@@ -94,11 +95,15 @@ export const MaterialTheme = responsiveFontSizes(
       },
       body1: {
         fontWeight: 300,
-        fontSize: 18
+        fontSize: 16
       },
       body2: {
         fontWeight: 300,
-        fontSize: 12
+        fontSize: 14,
+      },
+      caption: {
+        fontWeight: 300,
+        lineHeight: 1.5
       }
     },
     spacing: 8,

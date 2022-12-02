@@ -174,7 +174,7 @@ const useStyles = makeStyles()(theme => ({
     transition: 'stroke-width 0.2s linear 0s',
   },
   hideOutline: {
-    strokeWidth: '2px',
+    strokeWidth: '1px',
     stroke: 'black',
     strokeLinejoin: 'round',
   },

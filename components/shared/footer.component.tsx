@@ -7,8 +7,12 @@ import InstagramIcon from '@mui/icons-material/Instagram'
 import LinkedInIcon from '@mui/icons-material/LinkedIn'
 import { TypeScriptIcon, VercelIcon, MuiIcon, NextIcon } from './icons'
 
-export const Footer: React.FC<Stylable> = props => {
-  const { className } = props
+interface FooterProps extends Stylable {
+  onContactClick: () => void
+}
+
+export const Footer: React.FC<FooterProps> = props => {
+  const { onContactClick, className } = props
   const { classes, cx } = useStyles()
   return (
     <div className={cx(className, classes.container)}>
@@ -18,7 +22,7 @@ export const Footer: React.FC<Stylable> = props => {
         columnSpacing={4}
         columns={{ xs: 1, md: 2, lg: 4 }}>
         <Grid className={classes.gridElement} item xs={1}>
-          <Typography className={classes.text} variant="body2">
+          <Typography className={classes.text} variant="caption">
             © 2022 Louis Manestar
           </Typography>
           <div className={classes.iconsFlex}>
@@ -37,24 +41,24 @@ export const Footer: React.FC<Stylable> = props => {
           <Link
             href="/contact"
             className={cx(classes.text, classes.link)}
-            variant="body2">
+            variant="caption">
             Hack this website!
           </Link>
           <Link
             href="/curriculum-vitae.pdf"
             className={cx(classes.text, classes.link)}
-            variant="body2">
+            variant="caption">
             Curriculum Vitae
           </Link>
           <Link
-            href="/contact"
+            onClick={onContactClick}
             className={cx(classes.text, classes.link)}
-            variant="body2">
+            variant="caption">
             Contact
           </Link>
         </Grid>
         <Grid className={classes.gridElement} item xs={1}>
-          <Typography className={classes.text} variant="body2">
+          <Typography className={classes.text} variant="caption">
             Written with love in:
           </Typography>
           <div className={classes.iconsFlex}>
@@ -70,7 +74,7 @@ export const Footer: React.FC<Stylable> = props => {
           </div>
         </Grid>
         <Grid className={classes.gridElement} item xs={1}>
-          <Typography className={classes.text} variant="body2">
+          <Typography className={classes.text} variant="caption">
             Hosted by:
           </Typography>
           <div className={classes.iconsFlex}>
@@ -112,5 +116,6 @@ const useStyles = makeStyles()(theme => ({
   },
   link: {
     marginBottom: theme.spacing(1),
+    cursor: 'pointer',
   },
 }))
