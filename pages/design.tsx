@@ -16,6 +16,7 @@ const Design: NextPage = () => {
 
 const useStyles = makeStyles()(theme => ({
   container: {
+    minHeight: '100vh',
     display: 'flex',
     flexDirection: 'column',
     maxWidth: '70rem',

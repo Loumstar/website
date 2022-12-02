@@ -15,7 +15,7 @@ const Home: NextPage = () => {
           {'Hello, my name is '}
           <span className={classes.colourfulText}>Louis.</span>
         </Typography>
-        <div className={classes.titleText}>
+        <div className={cx(classes.titleText, classes.overflow)}>
           <span>{'I am '}</span>
           <TypeAnimation
             sequence={[
@@ -59,6 +59,7 @@ const Home: NextPage = () => {
 const useStyles = makeStyles()(theme => ({
   about: {},
   container: {
+    minHeight: '100vh',
     display: 'flex',
     flexDirection: 'column',
     maxWidth: '75rem',
@@ -85,6 +86,12 @@ const useStyles = makeStyles()(theme => ({
   titleText: {
     fontWeight: theme.typography.fontWeightBold,
     fontSize: '2.5em',
+    lineHeight: 1.5,
+  },
+  overflow: {
+    overflow: 'scroll',
+    whiteSpace: 'nowrap',
+    textOverflow: 'ellipsis',
   },
   colourfulText: {
     background: '-webkit-linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
