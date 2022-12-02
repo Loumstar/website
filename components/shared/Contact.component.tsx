@@ -20,9 +20,7 @@ interface ContactProps extends Stylable {
 }
 
 export const Contact: React.FC<ContactProps> = props => {
-  console.log(process.env)
   if (!process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY) {
-    console.log(process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY)
     throw Error('EmailJS public key is missing.')
   }
 
