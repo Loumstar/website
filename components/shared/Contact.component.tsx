@@ -20,11 +20,13 @@ interface ContactProps extends Stylable {
 }
 
 export const Contact: React.FC<ContactProps> = props => {
-  if (!process.env.EMAILJS_PUBLIC_KEY) {
+  console.log(process.env)
+  if (!process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY) {
+    console.log(process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY)
     throw Error('EmailJS public key is missing.')
   }
 
-  emailjs.init(process.env.EMAILJS_PUBLIC_KEY)
+  emailjs.init(process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY)
 
   const { isOpen, setIsOpen, className } = props
   const { classes, cx } = useStyles()
@@ -38,9 +40,9 @@ export const Contact: React.FC<ContactProps> = props => {
   const handleCloseSnackbar = () => setSnackbarOpen(false)
 
   const sendMessage = async () => {
-    if (!process.env.EMAILJS_SERVICE_ID) {
+    if (!process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID) {
       throw Error('EmailJS service id is missing.')
-    } else if (!process.env.EMAILJS_TEMPLATE_ID) {
+    } else if (!process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID) {
       throw Error('EmailJS template id is missing.')
     }
 
@@ -52,8 +54,8 @@ export const Contact: React.FC<ContactProps> = props => {
     handleCloseDialog()
 
     const { status } = await emailjs.send(
-      process.env.EMAILJS_SERVICE_ID,
-      process.env.EMAILJS_TEMPLATE_ID,
+      process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID,
+      process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID,
       templateParams,
     )
 
