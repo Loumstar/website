@@ -26,6 +26,7 @@ const useStyles = makeStyles()(theme => ({
   container: {
     display: 'flex',
     flexDirection: 'column',
+    maxWidth: '60rem',
   },
   title: {
     margin: theme.spacing(2, 0),

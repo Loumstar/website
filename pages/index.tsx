@@ -1,7 +1,7 @@
 import { NextPage } from 'next'
 import { makeStyles } from 'tss-react/mui'
 import { loremIpsum } from 'react-lorem-ipsum'
-import { Section } from '@components/shared'
+import { Section, SummaryCards } from '@components/shared'
 import { Typography } from '@mui/material'
 import { TypeAnimation } from 'react-type-animation'
 
@@ -15,7 +15,7 @@ const Home: NextPage = () => {
           {'Hello, my name is '}
           <span className={classes.colourfulText}>Louis.</span>
         </Typography>
-        <div className={cx(classes.titleText, classes.overflow)}>
+        <div className={cx(classes.titleText, classes.iAm)}>
           <span>{'I am '}</span>
           <TypeAnimation
             sequence={[
@@ -40,18 +40,22 @@ const Home: NextPage = () => {
           />
         </div>
       </div>
-      <div className={classes.textContainer}>
-        <Typography
-          variant="body1"
-          className={cx(classes.textBlock, classes.intro)}>
-          {loremIpsum()}
-        </Typography>
-        <Section
-          className={cx(classes.textBlock, classes.about)}
-          title="About Me"
-          text={`${loremIpsum()}`}
-        />
-      </div>
+      <Typography
+        variant="body1"
+        className={cx(classes.textBlock, classes.intro)}>
+        {loremIpsum()}
+      </Typography>
+      <Section
+        className={cx(classes.textBlock, classes.about)}
+        title="About Me"
+        text={`${loremIpsum()}`}
+      />
+      <Section
+        className={cx(classes.textBlock, classes.about)}
+        title="What I do"
+        text={`${loremIpsum()}`}
+      />
+      <SummaryCards />
     </div>
   )
 }
@@ -66,19 +70,19 @@ const useStyles = makeStyles()(theme => ({
     padding: '2.5rem',
     marginLeft: 'auto',
     marginRight: 'auto',
+    [theme.breakpoints.down('sm')]: {
+      padding: theme.spacing(3), // This needs to be designed better with top-bar
+      paddingTop: theme.spacing(2),
+    },
   },
-  intro: {},
+  intro: {
+    maxWidth: '60rem',
+  },
   navbar: {
     backgroundColor: 'transparent',
   },
   textBlock: {
     margin: theme.spacing(2, 0),
-  },
-  textContainer: {
-    display: 'flex',
-    flexDirection: 'column',
-    padding: '0 0rem',
-    maxWidth: '60rem',
   },
   titleContainer: {
     marginBottom: theme.spacing(4),
@@ -88,10 +92,13 @@ const useStyles = makeStyles()(theme => ({
     fontSize: '2.5em',
     lineHeight: 1.5,
   },
-  overflow: {
-    overflow: 'scroll',
-    whiteSpace: 'nowrap',
-    textOverflow: 'ellipsis',
+  iAm: {
+    //overflow: 'scroll',
+    //whiteSpace: 'nowrap',
+    //textiAm: 'ellipsis',
+    [theme.breakpoints.down('sm')]: {
+      display: 'none',
+    },
   },
   colourfulText: {
     background: '-webkit-linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',

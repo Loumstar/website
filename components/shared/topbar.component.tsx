@@ -5,6 +5,7 @@ import { AppBar, IconButton, Toolbar, Tooltip } from '@mui/material'
 import { Button } from '@mui/material'
 import { Logo } from '@components/shared/icons'
 import { Stylable } from 'types/react'
+import { Box } from '@mui/system'
 
 interface TopBarProps extends Stylable {
   onContactClick: () => void
@@ -41,8 +42,11 @@ export const TopBar: React.FC<TopBarProps> = props => {
         <div className={classes.buttonContainer}>
           {links.map(({ label, route, isDisabled }) =>
             isDisabled ? (
-              <Tooltip key={`${label}-tooltip`} title="Under construction">
-                <span>
+              <Tooltip
+                className={classes.buttonTooltip}
+                key={`${label}-tooltip`}
+                title="Under construction">
+                <Box className={classes.buttonWrapper} key={`${label}-button`}>
                   <Button
                     key={label}
                     className={cx(className, classes.button)}
@@ -50,24 +54,28 @@ export const TopBar: React.FC<TopBarProps> = props => {
                     disabled>
                     {label}
                   </Button>
-                </span>
+                </Box>
               </Tooltip>
             ) : (
-              <Button
-                key={label}
-                className={cx(className, classes.button)}
-                color="primary"
-                onClick={() => router.push(route)}>
-                {label}
-              </Button>
+              <Box className={classes.buttonWrapper} key={`${label}-wrapper`}>
+                <Button
+                  key={label}
+                  className={cx(className, classes.button)}
+                  color="primary"
+                  onClick={() => router.push(route)}>
+                  {label}
+                </Button>
+              </Box>
             ),
           )}
-          <Button
-            className={cx(className, classes.button)}
-            color="primary"
-            onClick={onContactClick}>
-            Contact
-          </Button>
+          <Box className={classes.buttonWrapper}>
+            <Button
+              className={cx(className, classes.button)}
+              color="primary"
+              onClick={onContactClick}>
+              Contact
+            </Button>
+          </Box>
         </div>
       </Toolbar>
     </AppBar>
@@ -84,17 +92,30 @@ const useStyles = makeStyles()(theme => ({
     maxWidth: '30rem',
     flexGrow: 1,
     overflow: 'scroll',
+    [theme.breakpoints.down('sm')]: {
+      maxWidth: 'unset',
+      justifyContent: 'flex-start',
+    },
+  },
+  buttonWrapper: {
+    display: 'inline-flex',
+    justifyContent: 'center',
+    flexGrow: 1,
   },
   button: {
     textTransform: 'capitalize',
+    [theme.breakpoints.down('sm')]: {},
   },
+  buttonTooltip: {},
   logo: {
     fontSize: theme.spacing(6),
   },
   logoButton: {
     marginRight: theme.spacing(1),
     [theme.breakpoints.down('sm')]: {
-      marginRight: 0,
+      marginRight: theme.spacing(1),
+      paddingRight: theme.spacing(0),
+      paddingLeft: theme.spacing(0),
     },
   },
   toolbar: {
@@ -102,8 +123,9 @@ const useStyles = makeStyles()(theme => ({
     width: '100%',
     maxWidth: '75rem',
     [theme.breakpoints.down('sm')]: {
-      paddingLeft: 0,
-      paddingRight: theme.spacing(1),
+      paddingRight: theme.spacing(2),
+      paddingLeft: theme.spacing(2),
+      justifyContent: 'flex-start',
     },
   },
 }))
