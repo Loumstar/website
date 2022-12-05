@@ -87,10 +87,11 @@ export const MaterialTheme = responsiveFontSizes(
       },
       h2: {
         fontWeight: 900,
-        fontSize: 24
+        fontSize: 32
       },
       h3: {
         fontWeight: 500,
+        fontSize: 22
       },
       body1: {
         fontWeight: 300,
