@@ -14,6 +14,7 @@ interface SectionProps extends Stylable {
   imageHeight?: number
   imageAlt?: string
   float?: 'left' | 'right'
+  imageClassName?: string
 }
 
 export const Section: React.FC<SectionProps> = props => {
@@ -26,6 +27,7 @@ export const Section: React.FC<SectionProps> = props => {
     imageHeight,
     imageAlt,
     float = 'right',
+    imageClassName,
     className,
   } = props
 
@@ -46,7 +48,7 @@ export const Section: React.FC<SectionProps> = props => {
       <Box className={classes.textContainer}>
         {imagePath && (
           <Image
-            className={classes.image}
+            className={cx(imageClassName, classes.image)}
             src={imagePath}
             width={imageWidth}
             height={imageHeight}
@@ -64,12 +66,14 @@ const useStyles = (float: 'left' | 'right') =>
     image: {
       float: float,
       margin: 0,
+      objectFit: 'cover',
       marginRight: theme.spacing(float === 'left' ? 2 : 0),
       marginLeft: theme.spacing(float === 'right' ? 2 : 0),
       [theme.breakpoints.down('sm')]: {
         margin: theme.spacing(2, 'auto'),
         display: 'block',
         float: 'none',
+        width: '100%',
       },
     },
     textContainer: {

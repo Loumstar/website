@@ -4,7 +4,7 @@ import type { AppProps } from 'next/app'
 import Head from 'next/head'
 import { ThemeProvider, CssBaseline } from '@mui/material'
 import { makeStyles, MaterialTheme } from '@styles'
-import { Contact, TopBar } from '@components/shared'
+import { Contact, TopBar, Hack } from '@components/shared'
 import { Footer } from '@components/shared'
 import { useState } from 'react'
 
@@ -15,9 +15,12 @@ export { augmentDocumentWithEmotionCache }
 
 const App = ({ Component, pageProps }: AppProps) => {
   const [contactOpen, setContactOpen] = useState(false)
+  const [hackOpen, setHackOpen] = useState(false)
+
   const { classes } = useStyles()
 
   const handleContactOpen = () => setContactOpen(true)
+  const handleHackOpen = () => setHackOpen(true)
 
   return (
     <>
@@ -34,7 +37,11 @@ const App = ({ Component, pageProps }: AppProps) => {
           />
           <Component {...pageProps} />
           <Contact isOpen={contactOpen} setIsOpen={setContactOpen} />
-          <Footer onContactClick={handleContactOpen} />
+          <Hack isOpen={hackOpen} setIsOpen={setHackOpen} />
+          <Footer
+            onContactClick={handleContactOpen}
+            onHackClick={handleHackOpen}
+          />
         </div>
       </ThemeProvider>
     </>

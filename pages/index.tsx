@@ -49,9 +49,9 @@ const Home: NextPage = () => {
         className={cx(classes.textBlock, classes.about)}
         headingTitle="About Me"
         text={`${loremIpsum()}`}
-        imagePath="/windsor.jpg"
-        imageWidth={400}
-        imageHeight={300}
+        imagePath="/windsor.jpeg"
+        imageWidth={375}
+        imageHeight={281.25}
         float="right"
         imageAlt="Cycling around Windsor Great Park."
       />
@@ -71,9 +71,22 @@ const Home: NextPage = () => {
         className={cx(classes.textBlock, classes.nonTechnical)}
         sectionTitle="Music"
         imagePath="/elements.jpeg"
-        imageWidth={320}
-        imageHeight={400}
+        imageWidth={375}
+        imageHeight={468.75}
+        imageAlt="Playing with The Elements @ Club 85 2018."
+        imageClassName={classes.sectionImage}
         float="right"
+        text={`${loremIpsum()}`}
+      />
+      <Section
+        className={cx(classes.textBlock, classes.nonTechnical)}
+        sectionTitle="Flying"
+        imagePath="/brighton-flight.jpeg"
+        imageWidth={375}
+        imageHeight={667}
+        float="left"
+        imageAlt="A flight out to Brighton June 2019."
+        imageClassName={classes.sectionImage}
         text={`${loremIpsum()}`}
       />
       <Section
@@ -82,6 +95,19 @@ const Home: NextPage = () => {
         imagePath="/fontainebleu.jpeg"
         imageWidth={375}
         imageHeight={667}
+        imageAlt="Into the forest of Fontainebleu for some night climbing."
+        imageClassName={classes.sectionImage}
+        float="right"
+        text={`${loremIpsum()}`}
+      />
+      <Section
+        className={cx(classes.textBlock, classes.nonTechnical)}
+        sectionTitle="Coffee"
+        imagePath="/coffee.jpeg"
+        imageWidth={375}
+        imageHeight={667}
+        imageAlt="My best attempt at a flat white."
+        imageClassName={cx(classes.sectionImage, classes.coffeeImage)}
         float="left"
         text={`${loremIpsum()}`}
       />
@@ -108,7 +134,7 @@ const useStyles = makeStyles()(theme => ({
     },
   },
   intro: {
-    maxWidth: '75rem',
+    maxWidth: '60rem',
   },
   navbar: {
     backgroundColor: 'transparent',
@@ -138,6 +164,15 @@ const useStyles = makeStyles()(theme => ({
     margin: '1rem 0',
     //maxWidth: '65rem',
     alignSelf: 'center',
+  },
+  sectionImage: {
+    overflow: 'hidden',
+    objectFit: 'cover',
+    height: '450px',
+    padding: theme.spacing(0.5),
+  },
+  coffeeImage: {
+    objectPosition: 'center 78%',
   },
 }))
 

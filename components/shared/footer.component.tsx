@@ -9,10 +9,11 @@ import { TypeScriptIcon, VercelIcon, MuiIcon, NextIcon } from './icons'
 
 interface FooterProps extends Stylable {
   onContactClick: () => void
+  onHackClick: () => void
 }
 
 export const Footer: React.FC<FooterProps> = props => {
-  const { onContactClick, className } = props
+  const { onContactClick, onHackClick, className } = props
   const { classes, cx } = useStyles()
   return (
     <div className={cx(className, classes.container)}>
@@ -39,7 +40,7 @@ export const Footer: React.FC<FooterProps> = props => {
         </Grid>
         <Grid className={classes.gridElement} item xs={1}>
           <Link
-            href="/contact"
+            onClick={onHackClick}
             className={cx(classes.text, classes.link)}
             variant="caption">
             Hack this website!
