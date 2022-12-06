@@ -4,7 +4,7 @@ import type { AppProps } from 'next/app'
 import Head from 'next/head'
 import { ThemeProvider, CssBaseline } from '@mui/material'
 import { makeStyles, MaterialTheme } from '@styles'
-import { Contact, TopBar, Hack } from '@components/shared'
+import { Contact, TopBar } from '@components/shared'
 import { Footer } from '@components/shared'
 import { useState } from 'react'
 
@@ -36,8 +36,23 @@ const App = ({ Component, pageProps }: AppProps) => {
             onContactClick={handleContactOpen}
           />
           <Component {...pageProps} />
-          <Contact isOpen={contactOpen} setIsOpen={setContactOpen} />
-          <Hack isOpen={hackOpen} setIsOpen={setHackOpen} />
+          <Contact
+            isOpen={contactOpen}
+            setIsOpen={setContactOpen}
+            dialogTitle="Hey!"
+            dialogText="Whether you're interested in chatting about a career
+              opportunity, a new project, or you've just hacked my website,
+              let me know and I will get back to you!"
+          />
+          <Contact
+            isOpen={hackOpen}
+            setIsOpen={setHackOpen}
+            dialogTitle="Hack my website!"
+            dialogText="In this website, there is a puzzle which requires you
+              to do some hacking! The hint is to follow the BrewDog. Once you've
+              found the secret key, paste it here. The first person to find the
+              secret key will get a free pint on me!"
+          />
           <Footer
             onContactClick={handleContactOpen}
             onHackClick={handleHackOpen}

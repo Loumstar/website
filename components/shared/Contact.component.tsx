@@ -17,6 +17,8 @@ import {
 interface ContactProps extends Stylable {
   isOpen: boolean
   setIsOpen: (state: boolean) => void
+  dialogTitle: string
+  dialogText: string
 }
 
 export const Contact: React.FC<ContactProps> = props => {
@@ -26,7 +28,7 @@ export const Contact: React.FC<ContactProps> = props => {
 
   emailjs.init(process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY)
 
-  const { isOpen, setIsOpen, className } = props
+  const { isOpen, setIsOpen, dialogTitle, dialogText, className } = props
   const { classes, cx } = useStyles()
 
   const [snackbarStatus, setSnackbarStatus] = useState(200)
@@ -68,12 +70,10 @@ export const Contact: React.FC<ContactProps> = props => {
         open={isOpen}
         onClose={handleCloseDialog}
         slotProps={{ backdrop: { className: classes.backdrop } }}>
-        <DialogTitle>Hey!</DialogTitle>
+        <DialogTitle>{dialogTitle}</DialogTitle>
         <DialogContent>
           <DialogContentText variant="body2" className={classes.text}>
-            Whether you{"'"}re interested in chatting about a career
-            opportunity, a new project, or you{"'"}ve just hacked my website,
-            let me know and I will get back to you!
+            {dialogText}
           </DialogContentText>
           <TextField
             className={classes.email}

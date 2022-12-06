@@ -9,29 +9,47 @@ interface SectionProps extends Stylable {
   headingTitle?: string
   sectionTitle?: string
   text: string
-  imagePath?: string
-  imageWidth?: number
-  imageHeight?: number
-  imageAlt?: string
-  float?: 'left' | 'right'
-  imageClassName?: string
+  image?: {
+    path: string
+    width: number
+    height: number
+    alt: string
+    float?: 'left' | 'right'
+    isPriority?: boolean
+    className?: string
+  }
+  embedding?: {
+    component: JSX.Element
+    float?: 'left' | 'right'
+    className?: string
+  }
 }
 
 export const Section: React.FC<SectionProps> = props => {
-  const {
-    headingTitle,
-    sectionTitle,
-    text,
-    imagePath,
-    imageWidth,
-    imageHeight,
-    imageAlt,
-    float = 'right',
-    imageClassName,
-    className,
-  } = props
+  const { headingTitle, sectionTitle, text, image, embedding, className } =
+    props
 
-  const { classes, cx } = useStyles(float)()
+  const imageFloat = image?.float || 'right'
+  const embeddingFloat = embedding?.float || 'right'
+
+  const { classes, cx } = useStyles(imageFloat, embeddingFloat)()
+
+  const imageComponent = image ? (
+    <Image
+      className={cx(image.className, classes.image)}
+      src={image.path}
+      width={image.width}
+      height={image.height}
+      alt={image.alt}
+      priority={image.isPriority}
+    />
+  ) : undefined
+
+  const embeddingComponent = embedding ? (
+    <Box className={cx(embedding.className, classes.embeddingWrapper)}>
+      {embedding.component}
+    </Box>
+  ) : undefined
 
   return (
     <div className={cx(className, classes.container)}>
@@ -40,35 +58,31 @@ export const Section: React.FC<SectionProps> = props => {
           {headingTitle}
         </Typography>
       )}
+      {imageFloat === 'left' && imageComponent}
+      {embeddingFloat === 'left' && embeddingComponent}
       {sectionTitle && (
         <Typography className={classes.sectionTitle} variant="h3">
           {sectionTitle}
         </Typography>
       )}
-      <Box className={classes.textContainer}>
-        {imagePath && (
-          <Image
-            className={cx(imageClassName, classes.image)}
-            src={imagePath}
-            width={imageWidth}
-            height={imageHeight}
-            alt={imageAlt || ''}
-          />
-        )}
-        <Typography>{text}</Typography>
-      </Box>
+      {imageFloat === 'right' && imageComponent}
+      {embeddingFloat === 'right' && embeddingComponent}
+      <Typography>{text}</Typography>
     </div>
   )
 }
 
-const useStyles = (float: 'left' | 'right') =>
+const useStyles = (
+  imageFloat: 'left' | 'right',
+  embeddingFloat: 'left' | 'right',
+) =>
   makeStyles()(theme => ({
     image: {
-      float: float,
-      margin: 0,
+      float: imageFloat,
+      margin: theme.spacing(1),
       objectFit: 'cover',
-      marginRight: theme.spacing(float === 'left' ? 2 : 0),
-      marginLeft: theme.spacing(float === 'right' ? 2 : 0),
+      marginRight: theme.spacing(imageFloat === 'left' ? 2 : 0),
+      marginLeft: theme.spacing(imageFloat === 'right' ? 2 : 0),
       [theme.breakpoints.down('sm')]: {
         margin: theme.spacing(2, 'auto'),
         display: 'block',
@@ -76,11 +90,8 @@ const useStyles = (float: 'left' | 'right') =>
         width: '100%',
       },
     },
-    textContainer: {
-      display: 'inline',
-    },
     container: {
-      display: 'flex',
+      display: 'inline',
       flexDirection: 'column',
       maxWidth: '75rem',
     },
@@ -89,5 +100,10 @@ const useStyles = (float: 'left' | 'right') =>
     },
     sectionTitle: {
       margin: theme.spacing(1, 0),
+    },
+    embeddingWrapper: {
+      float: embeddingFloat,
+      marginRight: theme.spacing(embeddingFloat === 'left' ? 2 : 0),
+      marginLeft: theme.spacing(embeddingFloat === 'right' ? 2 : 0),
     },
   }))

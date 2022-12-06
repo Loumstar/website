@@ -4,6 +4,7 @@ import { loremIpsum } from 'react-lorem-ipsum'
 import { Section, SummaryCards } from '@components/shared'
 import { Typography } from '@mui/material'
 import { TypeAnimation } from 'react-type-animation'
+import Script from 'next/script'
 
 const Home: NextPage = () => {
   const { classes, cx } = useStyles()
@@ -40,20 +41,22 @@ const Home: NextPage = () => {
           />
         </div>
       </div>
-      <Typography
-        variant="body1"
-        className={cx(classes.textBlock, classes.intro)}>
-        {loremIpsum()}
-      </Typography>
+      <Section
+        className={cx(classes.textBlock, classes.intro)}
+        text={`${loremIpsum()}`}
+      />
       <Section
         className={cx(classes.textBlock, classes.about)}
         headingTitle="About Me"
         text={`${loremIpsum()}`}
-        imagePath="/windsor.jpeg"
-        imageWidth={375}
-        imageHeight={281.25}
-        float="right"
-        imageAlt="Cycling around Windsor Great Park."
+        image={{
+          path: '/windsor.jpeg',
+          width: 375,
+          height: 281.25,
+          float: 'right',
+          alt: 'Cycling around Windsor Great Park.',
+          isPriority: true,
+        }}
       />
       <Section
         className={cx(classes.textBlock, classes.technical)}
@@ -70,46 +73,72 @@ const Home: NextPage = () => {
       <Section
         className={cx(classes.textBlock, classes.nonTechnical)}
         sectionTitle="Music"
-        imagePath="/elements.jpeg"
-        imageWidth={375}
-        imageHeight={468.75}
-        imageAlt="Playing with The Elements @ Club 85 2018."
-        imageClassName={classes.sectionImage}
-        float="right"
+        image={{
+          path: '/elements.jpeg',
+          width: 375,
+          height: 468.75,
+          float: 'right',
+          alt: 'Playing with The Elements @ Club 85 2018.',
+          className: classes.sectionImage,
+        }}
         text={`${loremIpsum()}`}
       />
       <Section
         className={cx(classes.textBlock, classes.nonTechnical)}
         sectionTitle="Flying"
-        imagePath="/brighton-flight.jpeg"
-        imageWidth={375}
-        imageHeight={667}
-        float="left"
-        imageAlt="A flight out to Brighton June 2019."
-        imageClassName={classes.sectionImage}
         text={`${loremIpsum()}`}
+        image={{
+          path: '/brighton-flight.jpeg',
+          width: 375,
+          height: 667,
+          float: 'right',
+          alt: 'A flight out to Brighton June 2019.',
+          className: classes.sectionImage,
+        }}
       />
       <Section
         className={cx(classes.textBlock, classes.nonTechnical)}
-        sectionTitle="Climbing and Cycling"
-        imagePath="/fontainebleu.jpeg"
-        imageWidth={375}
-        imageHeight={667}
-        imageAlt="Into the forest of Fontainebleu for some night climbing."
-        imageClassName={classes.sectionImage}
-        float="right"
+        sectionTitle="Climbing"
         text={`${loremIpsum()}`}
+        image={{
+          path: '/fontainebleu.jpeg',
+          width: 375,
+          height: 667,
+          float: 'right',
+          alt: 'Into the forest of Fontainebleu for some night climbing.',
+          className: classes.sectionImage,
+        }}
+      />
+      <Section
+        className={cx(classes.textBlock, classes.nonTechnical)}
+        sectionTitle="Cycling"
+        text={`${loremIpsum()}`}
+        embedding={{
+          component: (
+            <>
+              <div
+                className="strava-embed-placeholder"
+                data-embed-type="activity"
+                data-embed-id="8177352750"></div>
+              <Script src="https://strava-embeds.com/embed.js"></Script>
+            </>
+          ),
+          float: 'right',
+          className: classes.stravaEmbedding,
+        }}
       />
       <Section
         className={cx(classes.textBlock, classes.nonTechnical)}
         sectionTitle="Coffee"
-        imagePath="/coffee.jpeg"
-        imageWidth={375}
-        imageHeight={667}
-        imageAlt="My best attempt at a flat white."
-        imageClassName={cx(classes.sectionImage, classes.coffeeImage)}
-        float="left"
         text={`${loremIpsum()}`}
+        image={{
+          path: '/coffee.jpeg',
+          width: 375,
+          height: 667,
+          float: 'right',
+          alt: 'My best attempt at a flat white.',
+          className: cx(classes.sectionImage, classes.coffeeImage),
+        }}
       />
     </div>
   )
@@ -169,10 +198,16 @@ const useStyles = makeStyles()(theme => ({
     overflow: 'hidden',
     objectFit: 'cover',
     height: '450px',
-    padding: theme.spacing(0.5),
+    width: '375px',
+    //padding: theme.spacing(0.5),
   },
   coffeeImage: {
     objectPosition: 'center 78%',
+  },
+  stravaEmbedding: {
+    height: '537px',
+    width: '375px',
+    margin: '1px',
   },
 }))
 

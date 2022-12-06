@@ -24,3 +24,13 @@ a {
 *::-webkit-scrollbar {
   display: none;
 }
+
+iframe {
+  display: inline !important;
+  height: inherit !important;
+  width: inherit !important;
+}
+
+.strava-embed-root {
+  border: none !important
+}

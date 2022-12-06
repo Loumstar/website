@@ -29,7 +29,7 @@ export const TopBar: React.FC<TopBarProps> = props => {
       className={cx(className, classes.appbar)}
       position="static"
       color="transparent"
-      elevation={router.pathname != '/' ? 4 : 0}>
+      elevation={0 /*router.pathname != '/' ? 4 : 0*/}>
       <Toolbar className={cx(className, classes.toolbar)}>
         <IconButton
           className={classes.logoButton}
