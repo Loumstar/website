@@ -1,13 +1,74 @@
 import React from 'react'
-import { NextPage } from 'next'
+import { NextPage, GetStaticProps, InferGetStaticPropsType } from 'next'
+import Image from 'next/image'
 import { makeStyles } from 'tss-react/mui'
-import { Typography } from '@mui/material'
-import { Section } from '@components/shared'
-import { loremIpsum } from 'react-lorem-ipsum'
+import { env } from 'process'
+import SpotifyWebApi from 'spotify-web-api-node'
+import { ImageList, ImageListItem, Typography } from '@mui/material'
 import { Box } from '@mui/system'
+import { Section } from '@components/shared'
 
-const Music: NextPage = () => {
+// import { SpotifyPlayer } from '@components/spotify'
+
+interface Player {
+  item: SpotifyApi.TrackObjectFull | SpotifyApi.EpisodeObjectFull
+  timestamp: number
+  progressMs: number | null
+  isActive: boolean
+}
+
+export const getStaticProps: GetStaticProps<{
+  player: Player | null
+  recentlyPlayed: SpotifyApi.AlbumObjectSimplified[]
+}> = async () => {
+  let spotifyApi = new SpotifyWebApi({
+    clientId: env.NEXT_PUBLIC_SPOTIFY_CLIENT_ID,
+    clientSecret: env.NEXT_PUBLIC_SPOTIFY_CLIENT_SECRET,
+    refreshToken: env.NEXT_PUBLIC_SPOTIFY_REFRESH_TOKEN,
+  })
+
+  await spotifyApi.refreshAccessToken().then(
+    data => spotifyApi.setAccessToken(data.body['access_token']),
+    err => console.log('Failed to refresh Spotify access token', err),
+  )
+
+  let { body: recentlyPlayed } = await spotifyApi.getMyRecentlyPlayedTracks({
+    limit: 50,
+  })
+
+  console.log(recentlyPlayed.items[0])
+
+  let albums: SpotifyApi.AlbumObjectSimplified[] = []
+  recentlyPlayed.items.map(({ track }) => {
+    if (!albums.find(element => element.id === track.album.id)) {
+      albums.push(track.album)
+    }
+  })
+
+  const { body: player } = await spotifyApi.getMyCurrentPlaybackState()
+
+  return {
+    props: {
+      player: !player.item
+        ? null
+        : {
+            item: player.item,
+            timestamp: player.timestamp,
+            progressMs: player.progress_ms,
+            isActive: player.is_playing,
+          },
+      recentlyPlayed: albums,
+    },
+    revalidate: 60,
+  }
+}
+
+const Music: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
+  player,
+  recentlyPlayed,
+}) => {
   const { classes } = useStyles()
+
   return (
     <div className={classes.container}>
       <Box className={classes.titleContainer}>
@@ -18,13 +79,30 @@ const Music: NextPage = () => {
       <Section
         className={classes.playerText}
         headingTitle="What I'm listening to."
-        text={`${loremIpsum()}`}
+        text={`${player}`}
       />
       <Section
         className={classes.playerText}
         headingTitle="Listening History."
-        text={`${loremIpsum()}`}
+        text={''}
       />
+      <ImageList className={classes.albumGallery} cols={5}>
+        {recentlyPlayed.map(
+          ({ name, images }) =>
+            images[0]?.url && (
+              <ImageListItem key={`${name}-gallery`}>
+                <Image
+                  className={classes.albumCover}
+                  src={images[0]?.url}
+                  height={images[0].height}
+                  width={images[0].width}
+                  alt={name}
+                  loading="lazy"
+                />
+              </ImageListItem>
+            ),
+        )}
+      </ImageList>
     </div>
   )
 }
@@ -57,6 +135,14 @@ const useStyles = makeStyles()(theme => ({
   },
   playerText: {
     maxWidth: '60rem',
+  },
+  albumGallery: {
+    width: '100%',
+  },
+  albumCover: {
+    width: theme.spacing(20),
+    height: theme.spacing(20),
+    objectFit: 'cover',
   },
 }))
 

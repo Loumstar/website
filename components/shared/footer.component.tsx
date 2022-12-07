@@ -48,7 +48,9 @@ export const Footer: React.FC<FooterProps> = props => {
           <Link
             href="/curriculum-vitae.pdf"
             className={cx(classes.text, classes.link)}
-            variant="caption">
+            variant="caption"
+            rel="noopener noreferrer"
+            target="_blank">
             Curriculum Vitae
           </Link>
           <Link
