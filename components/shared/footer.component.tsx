@@ -27,13 +27,19 @@ export const Footer: React.FC<FooterProps> = props => {
             © 2022 Louis Manestar
           </Typography>
           <div className={classes.iconsFlex}>
-            <Link href="https://github.com/Loumstar/">
+            <Link
+              href="https://github.com/Loumstar/"
+              aria-label="GitHub Profile">
               <GitHubIcon className={classes.icon} />
             </Link>
-            <Link href="https://www.instagram.com/loumstarlearjet/">
+            <Link
+              href="https://www.instagram.com/loumstarlearjet/"
+              aria-label="Instagram Profile">
               <InstagramIcon className={classes.icon} />
             </Link>
-            <Link href="https://www.linkedin.com/in/louis-manestar/">
+            <Link
+              href="https://www.linkedin.com/in/louis-manestar/"
+              aria-label="LinkedIn Profile">
               <LinkedInIcon className={classes.icon} />
             </Link>
           </div>
@@ -65,13 +71,15 @@ export const Footer: React.FC<FooterProps> = props => {
             Written with love in:
           </Typography>
           <div className={classes.iconsFlex}>
-            <Link href="https://www.typescriptlang.org/">
+            <Link
+              href="https://www.typescriptlang.org/"
+              aria-label="TypeScript">
               <TypeScriptIcon className={classes.icon} />
             </Link>
-            <Link href="https://nextjs.org/">
+            <Link href="https://nextjs.org/" aria-label="NextJS">
               <NextIcon className={classes.icon} />
             </Link>
-            <Link href="https://mui.com/">
+            <Link href="https://mui.com/" aria-label="Material UI">
               <MuiIcon className={classes.icon} />
             </Link>
           </div>
@@ -81,7 +89,7 @@ export const Footer: React.FC<FooterProps> = props => {
             Hosted by:
           </Typography>
           <div className={classes.iconsFlex}>
-            <Link href="https://vercel.com/">
+            <Link href="https://vercel.com/" aria-label="Vercel">
               <VercelIcon className={classes.icon} />
             </Link>
           </div>

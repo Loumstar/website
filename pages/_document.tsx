@@ -7,7 +7,7 @@ class MyDocument extends Document<{
 }> {
   render() {
     return (
-      <Html>
+      <Html lang="en">
         <Head>
           <link rel="icon" href="/tablefaviconv2.ico" />
           <link rel="preconnect" href="https://rsms.me/" />

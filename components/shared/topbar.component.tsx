@@ -33,6 +33,7 @@ export const TopBar: React.FC<TopBarProps> = props => {
       <Toolbar className={cx(className, classes.toolbar)}>
         <IconButton
           className={classes.logoButton}
+          aria-label="Home"
           disableRipple
           onMouseEnter={() => setAddColour(true)}
           onMouseLeave={() => setAddColour(false)}

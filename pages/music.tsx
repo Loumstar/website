@@ -32,11 +32,12 @@ export const getStaticProps: GetStaticProps<{
     err => console.log('Failed to refresh Spotify access token', err),
   )
 
-  let { body: recentlyPlayed } = await spotifyApi.getMyRecentlyPlayedTracks({
+  let livePlayerPromise = spotifyApi.getMyCurrentPlaybackState()
+  let recentlyPlayedPromise = spotifyApi.getMyRecentlyPlayedTracks({
     limit: 50,
   })
 
-  console.log(recentlyPlayed.items[0])
+  const { body: recentlyPlayed } = await recentlyPlayedPromise
 
   let albums: SpotifyApi.AlbumObjectSimplified[] = []
   recentlyPlayed.items.map(({ track }) => {
@@ -45,7 +46,7 @@ export const getStaticProps: GetStaticProps<{
     }
   })
 
-  const { body: player } = await spotifyApi.getMyCurrentPlaybackState()
+  const { body: player } = await livePlayerPromise
 
   return {
     props: {
@@ -94,10 +95,10 @@ const Music: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
                 <Image
                   className={classes.albumCover}
                   src={images[0]?.url}
-                  height={images[0].height}
-                  width={images[0].width}
+                  height={200}
+                  width={200}
                   alt={name}
-                  loading="lazy"
+                  //loading="lazy"
                 />
               </ImageListItem>
             ),
