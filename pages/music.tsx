@@ -5,7 +5,7 @@ import { env } from 'process'
 import SpotifyWebApi from 'spotify-web-api-node'
 import { Typography } from '@mui/material'
 import { Box } from '@mui/system'
-import { Section } from '@components/shared'
+import { Heading } from '@components/shared'
 import { AlbumGallery } from '@components/spotify'
 
 // import { SpotifyPlayer } from '@components/spotify'
@@ -32,7 +32,7 @@ export const getStaticProps: GetStaticProps<{
     err => console.log('Failed to refresh Spotify access token', err),
   )
 
-  let livePlayerPromise = spotifyApi.getMyCurrentPlaybackState()
+  //let livePlayerPromise = spotifyApi.getMyCurrentPlaybackState()
   let recentlyPlayedPromise = spotifyApi.getMyRecentlyPlayedTracks({
     limit: 50,
   })
@@ -46,18 +46,18 @@ export const getStaticProps: GetStaticProps<{
     }
   })
 
-  const { body: player } = await livePlayerPromise
+  //const { body: player } = await livePlayerPromise
 
   return {
     props: {
-      player: !player.item
+      player: true //!player.item
         ? null
-        : {
+        : null /*{
             item: player.item,
             timestamp: player.timestamp,
             progressMs: player.progress_ms,
             isActive: player.is_playing,
-          },
+          }*/,
       recentlyPlayed: albums,
     },
     revalidate: 60,
@@ -71,18 +71,16 @@ const Music: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
   const { classes } = useStyles()
 
   return (
-    <div className={classes.container}>
+    <Box className={classes.container}>
       <Box className={classes.titleContainer}>
         <Typography variant="h1" className={classes.titleText}>
           <span className={classes.colourfulText}>Music</span>
         </Typography>
       </Box>
-      <Section
-        className={classes.playerText}
-        headingTitle="What I'm listening to">
+      <Heading title="What I'm listening to">
         <AlbumGallery albums={recentlyPlayed} />
-      </Section>
-    </div>
+      </Heading>
+    </Box>
   )
 }
 

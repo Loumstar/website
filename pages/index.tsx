@@ -1,22 +1,23 @@
 import { NextPage } from 'next'
 import { makeStyles } from 'tss-react/mui'
 import { loremIpsum } from 'react-lorem-ipsum'
-import { Section, SummaryCards } from '@components/shared'
-import { Typography } from '@mui/material'
+import { Heading, Section, SummaryCards } from '@components/shared'
+import { Box, Typography } from '@mui/material'
 import { TypeAnimation } from 'react-type-animation'
 import Script from 'next/script'
+import Image from 'next/image'
 
 const Home: NextPage = () => {
   const { classes, cx } = useStyles()
 
   return (
-    <div className={classes.container}>
-      <div className={classes.titleContainer}>
+    <Box className={classes.container}>
+      <Box className={classes.titleContainer}>
         <Typography variant="h1" className={classes.titleText}>
           {'Hello, my name is '}
           <span className={classes.colourfulText}>Louis.</span>
         </Typography>
-        <div className={cx(classes.titleText, classes.iAm)}>
+        <Box className={cx(classes.titleText, classes.iAm)}>
           <span>{'I am '}</span>
           <TypeAnimation
             sequence={[
@@ -39,116 +40,102 @@ const Home: NextPage = () => {
             wrapper="span"
             cursor
           />
-        </div>
-      </div>
-      <Section
-        className={cx(classes.textBlock, classes.intro)}
-        text={`${loremIpsum()}`}
-      />
-      <Section
-        className={cx(classes.textBlock, classes.about)}
-        headingTitle="About Me"
-        text={`${loremIpsum()}`}
-        image={{
-          path: '/windsor.jpeg',
-          width: 375,
-          height: 281.25,
-          float: 'right',
-          alt: 'Cycling around Windsor Great Park.',
-          isPriority: true,
-        }}
-      />
-      <Section
-        className={cx(classes.textBlock, classes.technical)}
-        headingTitle="What I do"
-        sectionTitle="Technical"
-        text={`${loremIpsum()}`}
-      />
-      <SummaryCards className={classes.summaryCards} />
-      <Section
-        className={cx(classes.textBlock, classes.nonTechnical)}
-        sectionTitle="Non-technical"
-        text={`${loremIpsum()}`}
-      />
-      <Section
-        className={cx(classes.textBlock, classes.nonTechnical)}
-        sectionTitle="Music"
-        image={{
-          path: '/elements.jpeg',
-          width: 375,
-          height: 468.75,
-          float: 'right',
-          alt: 'Playing with The Elements @ Club 85 2018.',
-          className: classes.sectionImage,
-        }}
-        text={`${loremIpsum()}`}
-      />
-      <Section
-        className={cx(classes.textBlock, classes.nonTechnical)}
-        sectionTitle="Flying"
-        text={`${loremIpsum()}`}
-        image={{
-          path: '/brighton-flight.jpeg',
-          width: 375,
-          height: 667,
-          float: 'right',
-          alt: 'A flight out to Brighton June 2019.',
-          className: classes.sectionImage,
-        }}
-      />
-      <Section
-        className={cx(classes.textBlock, classes.nonTechnical)}
-        sectionTitle="Climbing"
-        text={`${loremIpsum()}`}
-        image={{
-          path: '/fontainebleu.jpeg',
-          width: 375,
-          height: 667,
-          float: 'right',
-          alt: 'Into the forest of Fontainebleu for some night climbing.',
-          className: classes.sectionImage,
-        }}
-      />
-      <Section
-        className={cx(classes.textBlock, classes.nonTechnical)}
-        sectionTitle="Cycling"
-        text={`${loremIpsum()}`}
-        embedding={{
-          component: (
+        </Box>
+      </Box>
+      <Heading className={cx(classes.textBlock, classes.intro)}>
+        <Typography>{loremIpsum()}</Typography>
+      </Heading>
+      <Heading title="About Me">
+        <Section>
+          <>
+            <Image
+              className={cx(classes.image, classes.floatRight)}
+              src="/windsor.jpeg"
+              width={375}
+              height={281.25}
+              alt="Cycling around Windsor Great Park."
+              priority
+            />
+            <Typography>{loremIpsum()}</Typography>
+          </>
+        </Section>
+      </Heading>
+      <Heading className={classes.textBlock} title="What I do">
+        <>
+          <Section className={cx(classes.textBlock)} title="Technical">
+            <Typography>{loremIpsum()}</Typography>
+          </Section>
+          <SummaryCards className={classes.summaryCards} />
+          <Section className={cx(classes.textBlock)} title="Non-technical">
+            <Typography>{loremIpsum()}</Typography>
+          </Section>
+          <Section className={cx(classes.textBlock)} title="Music">
             <>
-              <div
-                className="strava-embed-placeholder"
-                data-embed-type="activity"
-                data-embed-id="8177352750"></div>
-              <Script src="https://strava-embeds.com/embed.js"></Script>
+              <Image
+                className={cx(classes.image, classes.floatRight)}
+                src="/elements.jpeg"
+                width={375}
+                height={468.75}
+                alt="Playing with The Elements @ Club 85 2018."
+              />
+              <Typography>{loremIpsum()}</Typography>
             </>
-          ),
-          float: 'right',
-          className: classes.stravaEmbedding,
-        }}
-      />
-      <Section
-        className={cx(classes.textBlock, classes.nonTechnical)}
-        sectionTitle="Coffee"
-        text={`${loremIpsum()}`}
-        image={{
-          path: '/coffee.jpeg',
-          width: 375,
-          height: 667,
-          float: 'right',
-          alt: 'My best attempt at a flat white.',
-          className: cx(classes.sectionImage, classes.coffeeImage),
-        }}
-      />
-    </div>
+          </Section>
+          <Section className={cx(classes.textBlock)} title="Flying">
+            <>
+              <Image
+                className={cx(classes.image, classes.floatRight)}
+                src="/brighton-flight.jpeg"
+                width={375}
+                height={667}
+                alt="A flight out to Brighton June 2019."
+              />
+              <Typography>{loremIpsum()}</Typography>
+            </>
+          </Section>
+          <Section className={cx(classes.textBlock)} title="Climbing">
+            <>
+              <Image
+                className={cx(classes.image, classes.floatRight)}
+                src="/fontainebleu.jpeg"
+                width={375}
+                height={667}
+                alt="Into the forest of Fontainebleu for some night climbing."
+              />
+              <Typography>{loremIpsum()}</Typography>
+            </>
+          </Section>
+          <Section className={cx(classes.textBlock)} title="Cycling">
+            <>
+              <Box className={cx(classes.stravaEmbedding, classes.floatRight)}>
+                <div
+                  className="strava-embed-placeholder"
+                  data-embed-type="activity"
+                  data-embed-id="8177352750"></div>
+                <Script src="https://strava-embeds.com/embed.js"></Script>
+              </Box>
+              <Typography>{loremIpsum()}</Typography>
+            </>
+          </Section>
+          <Section className={cx(classes.textBlock)} title="Coffee">
+            <>
+              <Image
+                className={cx(classes.image, classes.floatRight)}
+                src="/coffee.jpeg"
+                width={375}
+                height={667}
+                alt="My best attempt at a flat white."
+              />
+              <Typography>{loremIpsum()}</Typography>
+            </>
+          </Section>
+        </>
+      </Heading>
+    </Box>
   )
 }
 
 const useStyles = makeStyles()(theme => ({
-  about: {},
-  heading: {},
-  technical: {},
-  nonTechnical: {},
   container: {
     minHeight: '100vh',
     display: 'flex',
@@ -194,12 +181,28 @@ const useStyles = makeStyles()(theme => ({
     //maxWidth: '65rem',
     alignSelf: 'center',
   },
-  sectionImage: {
+  image: {
+    margin: theme.spacing(1),
     overflow: 'hidden',
     objectFit: 'cover',
-    height: '450px',
     width: '375px',
-    //padding: theme.spacing(0.5),
+    height: 'auto',
+    [theme.breakpoints.down('sm')]: {
+      margin: theme.spacing(2, 'auto'),
+      display: 'block',
+      float: 'none',
+      width: '100%',
+    },
+  },
+  floatLeft: {
+    float: 'left',
+    marginRight: theme.spacing(2),
+    marginLeft: theme.spacing(0),
+  },
+  floatRight: {
+    float: 'right',
+    marginRight: theme.spacing(0),
+    marginLeft: theme.spacing(2),
   },
   coffeeImage: {
     objectPosition: 'center 78%',
