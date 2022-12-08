@@ -1,12 +1,12 @@
 import React from 'react'
 import { NextPage, GetStaticProps, InferGetStaticPropsType } from 'next'
-import Image from 'next/image'
 import { makeStyles } from 'tss-react/mui'
 import { env } from 'process'
 import SpotifyWebApi from 'spotify-web-api-node'
-import { ImageList, ImageListItem, Typography } from '@mui/material'
+import { Typography } from '@mui/material'
 import { Box } from '@mui/system'
 import { Section } from '@components/shared'
+import { AlbumGallery } from '@components/spotify'
 
 // import { SpotifyPlayer } from '@components/spotify'
 
@@ -39,7 +39,7 @@ export const getStaticProps: GetStaticProps<{
 
   const { body: recentlyPlayed } = await recentlyPlayedPromise
 
-  let albums: SpotifyApi.AlbumObjectSimplified[] = []
+  let albums: Array<SpotifyApi.AlbumObjectSimplified> = []
   recentlyPlayed.items.map(({ track }) => {
     if (!albums.find(element => element.id === track.album.id)) {
       albums.push(track.album)
@@ -79,31 +79,9 @@ const Music: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
       </Box>
       <Section
         className={classes.playerText}
-        headingTitle="What I'm listening to."
-        text={`${player}`}
-      />
-      <Section
-        className={classes.playerText}
-        headingTitle="Listening History."
-        text={''}
-      />
-      <ImageList className={classes.albumGallery} cols={5}>
-        {recentlyPlayed.map(
-          ({ name, images }) =>
-            images[0]?.url && (
-              <ImageListItem key={`${name}-gallery`}>
-                <Image
-                  className={classes.albumCover}
-                  src={images[0]?.url}
-                  height={200}
-                  width={200}
-                  alt={name}
-                  //loading="lazy"
-                />
-              </ImageListItem>
-            ),
-        )}
-      </ImageList>
+        headingTitle="What I'm listening to">
+        <AlbumGallery albums={recentlyPlayed} />
+      </Section>
     </div>
   )
 }

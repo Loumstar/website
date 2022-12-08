@@ -8,7 +8,7 @@ import { Box } from '@mui/system'
 interface SectionProps extends Stylable {
   headingTitle?: string
   sectionTitle?: string
-  text: string
+  text?: string
   image?: {
     path: string
     width: number
@@ -23,11 +23,19 @@ interface SectionProps extends Stylable {
     float?: 'left' | 'right'
     className?: string
   }
+  children?: JSX.Element
 }
 
 export const Section: React.FC<SectionProps> = props => {
-  const { headingTitle, sectionTitle, text, image, embedding, className } =
-    props
+  const {
+    headingTitle,
+    sectionTitle,
+    text,
+    image,
+    embedding,
+    children,
+    className,
+  } = props
 
   const imageFloat = image?.float || 'right'
   const embeddingFloat = embedding?.float || 'right'
@@ -67,7 +75,8 @@ export const Section: React.FC<SectionProps> = props => {
       )}
       {imageFloat === 'right' && imageComponent}
       {embeddingFloat === 'right' && embeddingComponent}
-      <Typography>{text}</Typography>
+      {text && <Typography>{text}</Typography>}
+      {children}
     </div>
   )
 }
