@@ -162,7 +162,7 @@ const useStyles = makeStyles()(theme => ({
     opacity: 0,
     stroke: 'none',
     transition: 'fill 0.2s, opacity 0.2s linear 0s',
-    '&:hover': {
+    '&:hover:not(:active)': {
       fill: 'white',
     },
   },

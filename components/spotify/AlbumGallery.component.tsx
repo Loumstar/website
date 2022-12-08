@@ -101,7 +101,7 @@ const useStyles = makeStyles()(theme => ({
     display: 'flex',
     flexWrap: 'wrap',
     [theme.breakpoints.down('sm')]: {
-      justifyContent: 'space-around',
+      justifyContent: 'flex-start',
     },
   },
   albumItem: {
@@ -110,7 +110,7 @@ const useStyles = makeStyles()(theme => ({
     width: theme.spacing(20),
     margin: theme.spacing(1),
     [theme.breakpoints.down('sm')]: {
-      width: '40%',
+      width: '45%',
       margin: '2.5%',
     },
   },
