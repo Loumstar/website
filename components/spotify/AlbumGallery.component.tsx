@@ -13,8 +13,6 @@ export const AlbumGallery: React.FC<AlbumGalleryProps> = props => {
   const { albums, className } = props
   const { classes, cx } = useStyles()
 
-  console.log(albums)
-
   return (
     <Box className={cx(className, classes.container)}>
       {albums.map(
@@ -34,6 +32,7 @@ export const AlbumGallery: React.FC<AlbumGalleryProps> = props => {
                       height={160}
                       width={160}
                       alt={name}
+                      loading="eager"
                     />
                   </Link>
                   <Link
@@ -58,6 +57,7 @@ export const AlbumGallery: React.FC<AlbumGalleryProps> = props => {
                     height={160}
                     width={160}
                     alt={name}
+                    loading="eager"
                   />
                   <Typography
                     className={cx(classes.albumText, classes.albumName)}

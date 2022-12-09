@@ -21,7 +21,7 @@ export const Footer: React.FC<FooterProps> = props => {
         className={classes.gridContainer}
         container
         columnSpacing={4}
-        columns={{ xs: 1, md: 2, lg: 4 }}>
+        columns={{ md: 2, lg: 4 }}>
         <Grid className={classes.gridElement} item xs={1}>
           <Typography className={classes.text} variant="caption">
             © 2022 Louis Manestar

@@ -1,0 +1,1 @@
+export { StravaActivity } from './StravaActivity.component'

@@ -8,18 +8,8 @@ import { Box } from '@mui/system'
 import { Heading } from '@components/shared'
 import { AlbumGallery } from '@components/spotify'
 
-// import { SpotifyPlayer } from '@components/spotify'
-
-interface Player {
-  item: SpotifyApi.TrackObjectFull | SpotifyApi.EpisodeObjectFull
-  timestamp: number
-  progressMs: number | null
-  isActive: boolean
-}
-
 export const getStaticProps: GetStaticProps<{
-  player: Player | null
-  recentlyPlayed: SpotifyApi.AlbumObjectSimplified[]
+  recentlyPlayedAlbums: SpotifyApi.AlbumObjectSimplified[]
 }> = async () => {
   let spotifyApi = new SpotifyWebApi({
     clientId: env.NEXT_PUBLIC_SPOTIFY_CLIENT_ID,
@@ -32,41 +22,27 @@ export const getStaticProps: GetStaticProps<{
     err => console.log('Failed to refresh Spotify access token', err),
   )
 
-  //let livePlayerPromise = spotifyApi.getMyCurrentPlaybackState()
-  let recentlyPlayedPromise = spotifyApi.getMyRecentlyPlayedTracks({
+  let albums: Array<SpotifyApi.AlbumObjectSimplified> = []
+  let { body: recentlyPlayed } = await spotifyApi.getMyRecentlyPlayedTracks({
     limit: 50,
   })
 
-  const { body: recentlyPlayed } = await recentlyPlayedPromise
-
-  let albums: Array<SpotifyApi.AlbumObjectSimplified> = []
   recentlyPlayed.items.map(({ track }) => {
     if (!albums.find(element => element.id === track.album.id)) {
       albums.push(track.album)
     }
   })
 
-  //const { body: player } = await livePlayerPromise
-
   return {
     props: {
-      player: true //!player.item
-        ? null
-        : null /*{
-            item: player.item,
-            timestamp: player.timestamp,
-            progressMs: player.progress_ms,
-            isActive: player.is_playing,
-          }*/,
-      recentlyPlayed: albums,
+      recentlyPlayedAlbums: albums,
     },
-    revalidate: 60,
+    revalidate: 120,
   }
 }
 
 const Music: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
-  player,
-  recentlyPlayed,
+  recentlyPlayedAlbums,
 }) => {
   const { classes } = useStyles()
 
@@ -78,7 +54,7 @@ const Music: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
         </Typography>
       </Box>
       <Heading title="What I'm listening to">
-        <AlbumGallery albums={recentlyPlayed} />
+        <AlbumGallery albums={recentlyPlayedAlbums} />
       </Heading>
     </Box>
   )
