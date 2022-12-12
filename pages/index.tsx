@@ -62,7 +62,7 @@ const Home: NextPage = () => {
       </Heading>
       <Heading title="What I do">
         <>
-          <Section title="Technical">
+          <Section>
             <Typography>{loremIpsum()}</Typography>
           </Section>
           <SummaryCards className={classes.summaryCards} />
@@ -185,8 +185,8 @@ const useStyles = makeStyles()(theme => ({
     margin: theme.spacing(1),
     overflow: 'hidden',
     objectFit: 'cover',
-    width: '375px',
-    height: 'auto',
+    width: theme.spacing(40),
+    height: theme.spacing(50),
     [theme.breakpoints.down('sm')]: {
       margin: theme.spacing(2, 'auto'),
       display: 'block',

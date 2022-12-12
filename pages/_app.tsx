@@ -26,7 +26,7 @@ const App = ({ Component, pageProps }: AppProps) => {
     <>
       <Head>
         <title>Louis Manestar</title>
-        <meta name="description" content="Louis Manestar's personal website" />
+        <meta name="description" content="Louis Manestar's website" />
       </Head>
       <ThemeProvider theme={MaterialTheme}>
         <CssBaseline />
