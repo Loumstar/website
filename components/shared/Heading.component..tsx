@@ -12,10 +12,10 @@ interface HeadingProps extends Stylable {
 export const Heading: React.FC<HeadingProps> = props => {
   const { title, children, className } = props
 
-  const { classes } = useStyles()
+  const { classes, cx } = useStyles()
 
   return (
-    <Box className={className}>
+    <Box className={cx(className, classes.container)}>
       {title && (
         <Typography className={classes.title} variant="h2">
           {title}
@@ -27,6 +27,9 @@ export const Heading: React.FC<HeadingProps> = props => {
 }
 
 const useStyles = makeStyles()(theme => ({
+  container: {
+    margin: theme.spacing(2, 0),
+  },
   childrenContainer: {
     display: 'flex',
     flexDirection: 'column',

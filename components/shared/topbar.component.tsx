@@ -20,8 +20,8 @@ export const TopBar: React.FC<TopBarProps> = props => {
 
   const links: Array<{ label: string; route: string; isDisabled: boolean }> = [
     { label: 'Music', route: '/music', isDisabled: false },
-    { label: 'Design', route: '/design', isDisabled: true },
-    { label: 'Software', route: '/software', isDisabled: true },
+    { label: 'Design', route: '/design', isDisabled: false },
+    { label: 'Software', route: '/software', isDisabled: false },
   ]
 
   return (
@@ -63,7 +63,8 @@ export const TopBar: React.FC<TopBarProps> = props => {
                   key={label}
                   className={cx(className, classes.button)}
                   color="primary"
-                  onClick={() => router.push(route)}>
+                  onClick={() => router.push(route)}
+                  disableFocusRipple>
                   {label}
                 </Button>
               </Box>
@@ -73,7 +74,8 @@ export const TopBar: React.FC<TopBarProps> = props => {
             <Button
               className={cx(className, classes.button)}
               color="primary"
-              onClick={onContactClick}>
+              onClick={onContactClick}
+              disableFocusRipple>
               Contact
             </Button>
           </Box>
@@ -105,7 +107,6 @@ const useStyles = makeStyles()(theme => ({
   },
   button: {
     textTransform: 'capitalize',
-    [theme.breakpoints.down('sm')]: {},
   },
   buttonTooltip: {},
   logo: {

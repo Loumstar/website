@@ -11,22 +11,24 @@ interface SectionProps extends Stylable {
 
 export const Section: React.FC<SectionProps> = props => {
   const { title, children, className } = props
-  const { classes } = useStyles()
+  const { classes, cx } = useStyles()
 
   return (
-    <Box className={className}>
+    <Box className={cx(className, classes.container)}>
       {title && (
         <Typography className={classes.title} variant="h3">
           {title}
         </Typography>
       )}
-      {children && <Box className={classes.childrenContainer}>{children}</Box>}
+      {children && <Box>{children}</Box>}
     </Box>
   )
 }
 
 const useStyles = makeStyles()(theme => ({
-  childrenContainer: {},
+  container: {
+    margin: theme.spacing(2, 0),
+  },
   title: {
     margin: theme.spacing(1, 0),
   },

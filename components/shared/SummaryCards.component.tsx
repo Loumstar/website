@@ -95,9 +95,11 @@ export const SummaryCards: React.FC<Stylable> = props => {
                 <Grid item>
                   <Button
                     key={`${name}-button`}
+                    aria-label={`See more ${title}`}
                     className={classes.button}
                     color="primary"
-                    onClick={() => router.push(link)}>
+                    onClick={() => router.push(link)}
+                    disableFocusRipple>
                     See more
                   </Button>
                 </Grid>

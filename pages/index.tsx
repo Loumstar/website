@@ -42,7 +42,7 @@ const Home: NextPage = () => {
           />
         </Box>
       </Box>
-      <Heading className={cx(classes.textBlock, classes.intro)}>
+      <Heading className={classes.intro}>
         <Typography>{loremIpsum()}</Typography>
       </Heading>
       <Heading title="About Me">
@@ -60,16 +60,16 @@ const Home: NextPage = () => {
           </>
         </Section>
       </Heading>
-      <Heading className={classes.textBlock} title="What I do">
+      <Heading title="What I do">
         <>
-          <Section className={cx(classes.textBlock)} title="Technical">
+          <Section title="Technical">
             <Typography>{loremIpsum()}</Typography>
           </Section>
           <SummaryCards className={classes.summaryCards} />
-          <Section className={cx(classes.textBlock)} title="Non-technical">
+          <Section title="Non-technical">
             <Typography>{loremIpsum()}</Typography>
           </Section>
-          <Section className={cx(classes.textBlock)} title="Music">
+          <Section title="Music">
             <>
               <Image
                 className={cx(classes.image, classes.floatRight)}
@@ -81,7 +81,7 @@ const Home: NextPage = () => {
               <Typography>{loremIpsum()}</Typography>
             </>
           </Section>
-          <Section className={cx(classes.textBlock)} title="Flying">
+          <Section title="Flying">
             <>
               <Image
                 className={cx(classes.image, classes.floatRight)}
@@ -93,7 +93,7 @@ const Home: NextPage = () => {
               <Typography>{loremIpsum()}</Typography>
             </>
           </Section>
-          <Section className={cx(classes.textBlock)} title="Climbing">
+          <Section title="Climbing">
             <>
               <Image
                 className={cx(classes.image, classes.floatRight)}
@@ -105,7 +105,7 @@ const Home: NextPage = () => {
               <Typography>{loremIpsum()}</Typography>
             </>
           </Section>
-          <Section className={cx(classes.textBlock)} title="Cycling">
+          <Section title="Cycling">
             <>
               <Box className={cx(classes.stravaEmbedding, classes.floatRight)}>
                 <div
@@ -117,7 +117,8 @@ const Home: NextPage = () => {
               <Typography>{loremIpsum()}</Typography>
             </>
           </Section>
-          <Section className={cx(classes.textBlock)} title="Coffee">
+          <Section title="Art Exhibitions" />
+          <Section title="Coffee">
             <>
               <Image
                 className={cx(classes.image, classes.floatRight)}
@@ -172,13 +173,12 @@ const useStyles = makeStyles()(theme => ({
     },
   },
   colourfulText: {
-    background: '-webkit-linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
+    background: `-webkit-linear-gradient(45deg, ${theme.palette.primary.light} 5%, #FF8E53 90%)`,
     WebkitBackgroundClip: 'text',
     WebkitTextFillColor: 'transparent',
   },
   summaryCards: {
     margin: '1rem 0',
-    //maxWidth: '65rem',
     alignSelf: 'center',
   },
   image: {

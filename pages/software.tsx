@@ -3,25 +3,36 @@ import { NextPage } from 'next'
 import { makeStyles } from 'tss-react/mui'
 import { Typography } from '@mui/material'
 import { Box } from '@mui/system'
-import { Heading, Section } from '@components/shared'
+import { Heading, Section, SummaryCards } from '@components/shared'
 
-const Design: NextPage = () => {
+const Software: NextPage = () => {
   const { classes } = useStyles()
   return (
     <Box className={classes.container}>
       <Typography variant="h1" className={classes.titleText}>
-        <span className={classes.colourfulText}>Design</span>
+        <span className={classes.colourfulText}>Software</span>
       </Typography>
-      <Heading title="Mechanical Engineering">
+      <Heading title="Tech Stack">
+        <SummaryCards />
+      </Heading>
+      <Heading title="Current Projects">
         <>
-          <Section title="Biofuel Engine Control System" />
-          <Section title="Miniature Racecar" />
+          <Section title="A-cappelify" />
+          <Section title="Spotify Graphed" />
+          <Section title="Personal Website" />
         </>
       </Heading>
-      <Heading title="Product Design">
+      <Heading title="Previous Projects">
         <>
-          <Section title="Geometric Coffee Table" />
-          <Section title="Stellated Floor Lamp" />
+          <Section title="Lambda Feedback" />
+          <Section title="Monocular self-supervised Depth Estimation for Surgical Scenes" />
+          <Section title="Scalable Brand Sentiment Tracking" />
+        </>
+      </Heading>
+      <Heading title="Hackathons">
+        <>
+          <Section title="IC Hack 2022" />
+          <Section title="Google Hashcode 2022" />
         </>
       </Heading>
     </Box>
@@ -54,4 +65,4 @@ const useStyles = makeStyles()(theme => ({
   },
 }))
 
-export default Design
+export default Software

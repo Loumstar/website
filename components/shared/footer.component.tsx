@@ -1,6 +1,6 @@
 import React from 'react'
 import { Stylable } from 'types/react'
-import { Grid, Link, Typography } from '@mui/material'
+import { Grid, Link, Typography, Box } from '@mui/material'
 import { makeStyles } from '@styles'
 import GitHubIcon from '@mui/icons-material/GitHub'
 import InstagramIcon from '@mui/icons-material/Instagram'
@@ -21,78 +21,87 @@ export const Footer: React.FC<FooterProps> = props => {
         className={classes.gridContainer}
         container
         columnSpacing={4}
-        columns={{ md: 2, lg: 4 }}>
-        <Grid className={classes.gridElement} item xs={1}>
-          <Typography className={classes.text} variant="caption">
-            © 2022 Louis Manestar
-          </Typography>
-          <div className={classes.iconsFlex}>
+        rowGap={2}
+        columns={{ sm: 2, md: 2, lg: 4 }}>
+        <Grid item className={classes.gridElement} xs={1}>
+          <Box className={classes.elementContainer}>
             <Link
-              href="https://github.com/Loumstar/"
-              aria-label="GitHub Profile">
-              <GitHubIcon className={classes.icon} />
+              onClick={onHackClick}
+              className={cx(classes.text, classes.link)}
+              variant="caption">
+              Hack this website!
             </Link>
             <Link
-              href="https://www.instagram.com/loumstarlearjet/"
-              aria-label="Instagram Profile">
-              <InstagramIcon className={classes.icon} />
+              href="/curriculum-vitae.pdf"
+              className={cx(classes.text, classes.link)}
+              variant="caption"
+              rel="noopener noreferrer"
+              target="_blank">
+              Curriculum Vitae
             </Link>
             <Link
-              href="https://www.linkedin.com/in/louis-manestar/"
-              aria-label="LinkedIn Profile">
-              <LinkedInIcon className={classes.icon} />
+              onClick={onContactClick}
+              className={cx(classes.text, classes.link)}
+              variant="caption">
+              Contact
             </Link>
-          </div>
+          </Box>
         </Grid>
-        <Grid className={classes.gridElement} item xs={1}>
-          <Link
-            onClick={onHackClick}
-            className={cx(classes.text, classes.link)}
-            variant="caption">
-            Hack this website!
-          </Link>
-          <Link
-            href="/curriculum-vitae.pdf"
-            className={cx(classes.text, classes.link)}
-            variant="caption"
-            rel="noopener noreferrer"
-            target="_blank">
-            Curriculum Vitae
-          </Link>
-          <Link
-            onClick={onContactClick}
-            className={cx(classes.text, classes.link)}
-            variant="caption">
-            Contact
-          </Link>
+        <Grid item className={classes.gridElement} xs={1}>
+          <Box className={classes.elementContainer}>
+            <Typography className={classes.text} variant="caption">
+              © 2022 Louis Manestar
+            </Typography>
+            <Box className={classes.iconsFlex}>
+              <Link
+                href="https://github.com/Loumstar/"
+                aria-label="GitHub Profile">
+                <GitHubIcon className={classes.icon} />
+              </Link>
+              <Link
+                href="https://www.instagram.com/loumstarlearjet/"
+                aria-label="Instagram Profile">
+                <InstagramIcon className={classes.icon} />
+              </Link>
+              <Link
+                href="https://www.linkedin.com/in/louis-manestar/"
+                aria-label="LinkedIn Profile">
+                <LinkedInIcon className={classes.icon} />
+              </Link>
+            </Box>
+          </Box>
         </Grid>
-        <Grid className={classes.gridElement} item xs={1}>
-          <Typography className={classes.text} variant="caption">
-            Written with love in:
-          </Typography>
-          <div className={classes.iconsFlex}>
-            <Link
-              href="https://www.typescriptlang.org/"
-              aria-label="TypeScript">
-              <TypeScriptIcon className={classes.icon} />
-            </Link>
-            <Link href="https://nextjs.org/" aria-label="NextJS">
-              <NextIcon className={classes.icon} />
-            </Link>
-            <Link href="https://mui.com/" aria-label="Material UI">
-              <MuiIcon className={classes.icon} />
-            </Link>
-          </div>
+        <Grid item className={classes.gridElement} xs={1}>
+          <Box className={classes.elementContainer}>
+            <Typography className={classes.text} variant="caption">
+              Written with love in:
+            </Typography>
+            <Box className={classes.iconsFlex}>
+              <Link
+                href="https://www.typescriptlang.org/"
+                aria-label="TypeScript">
+                <TypeScriptIcon className={classes.icon} />
+              </Link>
+              <Link href="https://nextjs.org/" aria-label="NextJS">
+                <NextIcon className={classes.icon} />
+              </Link>
+              <Link href="https://mui.com/" aria-label="Material UI">
+                <MuiIcon className={classes.icon} />
+              </Link>
+            </Box>
+          </Box>
         </Grid>
-        <Grid className={classes.gridElement} item xs={1}>
-          <Typography className={classes.text} variant="caption">
-            Hosted by:
-          </Typography>
-          <div className={classes.iconsFlex}>
-            <Link href="https://vercel.com/" aria-label="Vercel">
-              <VercelIcon className={classes.icon} />
-            </Link>
-          </div>
+        <Grid item className={classes.gridElement} xs={1}>
+          <Box className={classes.elementContainer}>
+            <Typography className={classes.text} variant="caption">
+              Hosted by:
+            </Typography>
+            <Box className={classes.iconsFlex}>
+              <Link href="https://vercel.com/" aria-label="Vercel">
+                <VercelIcon className={classes.icon} />
+              </Link>
+            </Box>
+          </Box>
         </Grid>
       </Grid>
     </div>
@@ -107,14 +116,23 @@ const useStyles = makeStyles()(theme => ({
     alignItems: 'center',
   },
   gridContainer: {
+    justifyContent: 'space-around',
     maxWidth: '60rem',
     padding: '1rem',
     marginTop: 0,
   },
-  gridElement: {},
+  gridElement: {
+    display: 'inline-flex',
+    justifyContent: 'center',
+  },
+  elementContainer: {
+    width: theme.spacing(18),
+    display: 'inline-flex',
+    flexDirection: 'column',
+  },
   text: {
     color: theme.palette.primary.contrastText,
-    display: 'block',
+    display: 'inline',
   },
   iconsFlex: {
     display: 'inline-flex',

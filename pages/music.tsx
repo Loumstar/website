@@ -5,16 +5,19 @@ import { env } from 'process'
 import SpotifyWebApi from 'spotify-web-api-node'
 import { Typography } from '@mui/material'
 import { Box } from '@mui/system'
-import { Heading } from '@components/shared'
+import { Heading, Section } from '@components/shared'
 import { AlbumGallery } from '@components/spotify'
 
 export const getStaticProps: GetStaticProps<{
-  recentlyPlayedAlbums: SpotifyApi.AlbumObjectSimplified[]
+  recentlyPlayedAlbums: Array<{
+    album: SpotifyApi.AlbumObjectSimplified
+    playedAt: string
+  }>
 }> = async () => {
   let spotifyApi = new SpotifyWebApi({
-    clientId: env.NEXT_PUBLIC_SPOTIFY_CLIENT_ID,
-    clientSecret: env.NEXT_PUBLIC_SPOTIFY_CLIENT_SECRET,
-    refreshToken: env.NEXT_PUBLIC_SPOTIFY_REFRESH_TOKEN,
+    clientId: env.SPOTIFY_CLIENT_ID,
+    clientSecret: env.SPOTIFY_CLIENT_SECRET,
+    refreshToken: env.SPOTIFY_REFRESH_TOKEN,
   })
 
   await spotifyApi.refreshAccessToken().then(
@@ -22,14 +25,17 @@ export const getStaticProps: GetStaticProps<{
     err => console.log('Failed to refresh Spotify access token', err),
   )
 
-  let albums: Array<SpotifyApi.AlbumObjectSimplified> = []
+  let albums: Array<{
+    album: SpotifyApi.AlbumObjectSimplified
+    playedAt: string
+  }> = []
   let { body: recentlyPlayed } = await spotifyApi.getMyRecentlyPlayedTracks({
     limit: 50,
   })
 
-  recentlyPlayed.items.map(({ track }) => {
-    if (!albums.find(element => element.id === track.album.id)) {
-      albums.push(track.album)
+  recentlyPlayed.items.map(({ track, played_at }) => {
+    if (!albums.find(element => element.album.id === track.album.id)) {
+      albums.push({ album: track.album, playedAt: played_at })
     }
   })
 
@@ -48,14 +54,25 @@ const Music: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
 
   return (
     <Box className={classes.container}>
-      <Box className={classes.titleContainer}>
-        <Typography variant="h1" className={classes.titleText}>
-          <span className={classes.colourfulText}>Music</span>
-        </Typography>
-      </Box>
-      <Heading title="What I'm listening to">
+      <Typography variant="h1" className={classes.titleText}>
+        <span className={classes.colourfulText}>Music</span>
+      </Typography>
+      <Heading title="Recently Played">
         <AlbumGallery albums={recentlyPlayedAlbums} />
       </Heading>
+      <Heading title="Instruments">
+        <>
+          <Section title="Keyboards" />
+          <Section title="DJing" />
+        </>
+      </Heading>
+      <Heading title="Bands">
+        <>
+          <Section title="St. Spliffstopher's Jazz Band" />
+          <Section title="The Elements" />
+        </>
+      </Heading>
+      <Heading title="Gigs I've been to" />
     </Box>
   )
 }
@@ -77,8 +94,6 @@ const useStyles = makeStyles()(theme => ({
   titleText: {
     fontWeight: theme.typography.fontWeightBold,
     fontSize: '2.5em',
-  },
-  titleContainer: {
     marginBottom: theme.spacing(4),
   },
   colourfulText: {
