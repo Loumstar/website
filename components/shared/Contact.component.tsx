@@ -92,7 +92,6 @@ export const Contact: React.FC<ContactProps> = props => {
             multiline
             minRows={4}
             maxRows={6}
-            autoFocus
             margin="dense"
             label="Message"
             type="text"

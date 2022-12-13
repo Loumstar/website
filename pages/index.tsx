@@ -1,7 +1,7 @@
 import { NextPage } from 'next'
 import { makeStyles } from 'tss-react/mui'
 import { loremIpsum } from 'react-lorem-ipsum'
-import { Heading, Section, SummaryCards } from '@components/shared'
+import { Heading, Section } from '@components/shared'
 import { Box, Typography } from '@mui/material'
 import { TypeAnimation } from 'react-type-animation'
 import Script from 'next/script'
@@ -65,9 +65,15 @@ const Home: NextPage = () => {
           <Section>
             <Typography>{loremIpsum()}</Typography>
           </Section>
-          <SummaryCards className={classes.summaryCards} />
-          <Section title="Non-technical">
-            <Typography>{loremIpsum()}</Typography>
+          <Section title="Software Engineering">
+            <>
+              <Typography>{loremIpsum()}</Typography>
+            </>
+          </Section>
+          <Section title="Mechanical Engineering">
+            <>
+              <Typography>{loremIpsum()}</Typography>
+            </>
           </Section>
           <Section title="Music">
             <>
