@@ -1,12 +1,12 @@
-import React from 'react'
-import { NextPage, GetStaticProps, InferGetStaticPropsType } from 'next'
-import { makeStyles } from 'tss-react/mui'
-import { env } from 'process'
-import SpotifyWebApi from 'spotify-web-api-node'
+import { ChipList, Heading, Section } from '@components/shared'
+import { AlbumGallery } from '@components/spotify'
 import { Typography } from '@mui/material'
 import { Box } from '@mui/system'
-import { Heading, Section } from '@components/shared'
-import { AlbumGallery } from '@components/spotify'
+import { GetStaticProps, InferGetStaticPropsType, NextPage } from 'next'
+import Head from 'next/head'
+import { env } from 'process'
+import SpotifyWebApi from 'spotify-web-api-node'
+import { makeStyles } from 'tss-react/mui'
 
 export const getStaticProps: GetStaticProps<{
   recentlyPlayedAlbums: Array<{
@@ -53,27 +53,52 @@ const Music: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
   const { classes } = useStyles()
 
   return (
-    <Box className={classes.container}>
-      <Typography variant="h1" className={classes.titleText}>
-        <span className={classes.colourfulText}>Music</span>
-      </Typography>
-      <Heading title="Recently Played">
-        <AlbumGallery albums={recentlyPlayedAlbums} />
-      </Heading>
-      <Heading title="Instruments">
-        <>
-          <Section title="Keyboards" />
-          <Section title="DJing" />
-        </>
-      </Heading>
-      <Heading title="Bands">
-        <>
-          <Section title="St. Spliffstopher's Jazz Band" />
-          <Section title="The Elements" />
-        </>
-      </Heading>
-      <Heading title="Gigs I've been to" />
-    </Box>
+    <>
+      <Head>
+        <title>Louis Manestar | Music</title>
+        <meta name="description" content="A portfolio of my music stuff" />
+      </Head>
+      <Box className={classes.container}>
+        <Typography variant="h1" className={classes.titleText}>
+          <span className={classes.colourfulText}>Music</span>
+        </Typography>
+        <Heading title="Recently Played">
+          <AlbumGallery albums={recentlyPlayedAlbums} />
+        </Heading>
+        <Heading title="Instruments">
+          <>
+            <Section title="Keyboards" />
+            <Section title="DJing" />
+          </>
+        </Heading>
+        <Heading title="Bands">
+          <>
+            <Section title="St. Spliffstopher's Jazz Band" />
+            <Section title="The Elements" />
+          </>
+        </Heading>
+        <Heading title="Gigs I've been to">
+          <ChipList
+            chips={[
+              {
+                artist: 'Eloise',
+                venue: 'Lafayette',
+                date: '20/08/21',
+                artistUrl: 'https://eloise-music.com/',
+                venueUrl: 'https://www.lafayettelondon.com/',
+              },
+              {
+                artist: 'Lokkhi Terra',
+                venue: 'Woolwich Works',
+                date: '01/08/21',
+                artistUrl: 'http://www.funkiwala.com/LokkhiTerra/',
+                venueUrl: 'https://www.woolwich.works/',
+              },
+            ]}
+          />
+        </Heading>
+      </Box>
+    </>
   )
 }
 

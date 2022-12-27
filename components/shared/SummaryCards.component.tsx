@@ -1,13 +1,13 @@
-import { Button, Paper, Typography, Grid } from '@mui/material'
-import React from 'react'
-import { Stylable } from 'types/react'
+import { Button, Grid, Paper, Typography } from '@mui/material'
 import { makeStyles } from '@styles'
 import { useRouter } from 'next/router'
+import React from 'react'
+import { Stylable } from 'types/react'
 
-import SmartToyIcon from '@mui/icons-material/SmartToy'
 import DevicesIcon from '@mui/icons-material/Devices'
 import FilterDramaIcon from '@mui/icons-material/FilterDrama'
 import PrecisionManufacturingIcon from '@mui/icons-material/PrecisionManufacturing'
+import SmartToyIcon from '@mui/icons-material/SmartToy'
 
 export const SummaryCards: React.FC<Stylable> = props => {
   const { className } = props

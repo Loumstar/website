@@ -1,144 +1,152 @@
-import { NextPage } from 'next'
-import { makeStyles } from 'tss-react/mui'
-import { loremIpsum } from 'react-lorem-ipsum'
 import { Heading, Section } from '@components/shared'
 import { Box, Typography } from '@mui/material'
-import { TypeAnimation } from 'react-type-animation'
-import Script from 'next/script'
+import { NextPage } from 'next'
+import Head from 'next/head'
 import Image from 'next/image'
+import Script from 'next/script'
+import { loremIpsum } from 'react-lorem-ipsum'
+import { TypeAnimation } from 'react-type-animation'
+import { makeStyles } from 'tss-react/mui'
 
 const Home: NextPage = () => {
   const { classes, cx } = useStyles()
 
   return (
-    <Box className={classes.container}>
-      <Box className={classes.titleContainer}>
-        <Typography variant="h1" className={classes.titleText}>
-          {'Hello, my name is '}
-          <span className={classes.colourfulText}>Louis.</span>
-        </Typography>
-        <Box className={cx(classes.titleText, classes.iAm)}>
-          <span>{'I am '}</span>
-          <TypeAnimation
-            sequence={[
-              'a Musician.',
-              1250,
-              'a Software Engineer.',
-              1250,
-              'a Pilot.',
-              1250,
-              'a Mechanical Engineer.',
-              1250,
-              'a Climber.',
-              1250,
-              'a Cyclist™.',
-              1250,
-            ]}
-            speed={20}
-            deletionSpeed={40}
-            repeat={Infinity}
-            wrapper="span"
-            cursor
-          />
-        </Box>
-      </Box>
-      <Heading className={classes.intro}>
-        <Typography>{loremIpsum()}</Typography>
-      </Heading>
-      <Heading title="About Me">
-        <Section>
-          <>
-            <Image
-              className={cx(classes.image, classes.floatRight)}
-              src="/windsor.jpeg"
-              width={375}
-              height={281.25}
-              alt="Cycling around Windsor Great Park."
-              priority
+    <>
+      <Head>
+        <title>Louis Manestar</title>
+        <meta name="description" content="Welcome my personal website!" />
+      </Head>
+      <Box className={classes.container}>
+        <Box className={classes.titleContainer}>
+          <Typography variant="h1" className={classes.titleText}>
+            {'Hello, my name is '}
+            <span className={classes.colourfulText}>Louis.</span>
+          </Typography>
+          <Box className={cx(classes.titleText, classes.iAm)}>
+            {/*<span>{'I am '}</span>*/}
+            <TypeAnimation
+              sequence={[
+                'Musician.',
+                1250,
+                'Software Engineer.',
+                1250,
+                'Pilot.',
+                1250,
+                'Mechanical Engineer.',
+                1250,
+                'Climber.',
+                1250,
+                'Cyclist™.',
+                1250,
+              ]}
+              speed={20}
+              deletionSpeed={60}
+              repeat={Infinity}
+              wrapper="span"
+              cursor
             />
-            <Typography>{loremIpsum()}</Typography>
-          </>
-        </Section>
-      </Heading>
-      <Heading title="What I do">
-        <>
+          </Box>
+        </Box>
+        <Heading className={classes.intro}>
+          <Typography>{loremIpsum()}</Typography>
+        </Heading>
+        <Heading title="About Me">
           <Section>
-            <Typography>{loremIpsum()}</Typography>
-          </Section>
-          <Section title="Software Engineering">
-            <>
-              <Typography>{loremIpsum()}</Typography>
-            </>
-          </Section>
-          <Section title="Mechanical Engineering">
-            <>
-              <Typography>{loremIpsum()}</Typography>
-            </>
-          </Section>
-          <Section title="Music">
             <>
               <Image
                 className={cx(classes.image, classes.floatRight)}
-                src="/elements.jpeg"
+                src="/windsor.jpeg"
                 width={375}
-                height={468.75}
-                alt="Playing with The Elements @ Club 85 2018."
+                height={281.25}
+                alt="Cycling around Windsor Great Park."
+                priority
               />
               <Typography>{loremIpsum()}</Typography>
             </>
           </Section>
-          <Section title="Flying">
-            <>
-              <Image
-                className={cx(classes.image, classes.floatRight)}
-                src="/brighton-flight.jpeg"
-                width={375}
-                height={667}
-                alt="A flight out to Brighton June 2019."
-              />
+        </Heading>
+        <Heading title="What I do">
+          <>
+            <Section>
               <Typography>{loremIpsum()}</Typography>
-            </>
-          </Section>
-          <Section title="Climbing">
-            <>
-              <Image
-                className={cx(classes.image, classes.floatRight)}
-                src="/fontainebleu.jpeg"
-                width={375}
-                height={667}
-                alt="Into the forest of Fontainebleu for some night climbing."
-              />
-              <Typography>{loremIpsum()}</Typography>
-            </>
-          </Section>
-          <Section title="Cycling">
-            <>
-              <Box className={cx(classes.stravaEmbedding, classes.floatRight)}>
-                <div
-                  className="strava-embed-placeholder"
-                  data-embed-type="activity"
-                  data-embed-id="8177352750"></div>
-                <Script src="https://strava-embeds.com/embed.js"></Script>
-              </Box>
-              <Typography>{loremIpsum()}</Typography>
-            </>
-          </Section>
-          <Section title="Art Exhibitions" />
-          <Section title="Coffee">
-            <>
-              <Image
-                className={cx(classes.image, classes.floatRight)}
-                src="/coffee.jpeg"
-                width={375}
-                height={667}
-                alt="My best attempt at a flat white."
-              />
-              <Typography>{loremIpsum()}</Typography>
-            </>
-          </Section>
-        </>
-      </Heading>
-    </Box>
+            </Section>
+            <Section title="Software Engineering">
+              <>
+                <Typography>{loremIpsum()}</Typography>
+              </>
+            </Section>
+            <Section title="Mechanical Engineering">
+              <>
+                <Typography>{loremIpsum()}</Typography>
+              </>
+            </Section>
+            <Section title="Music">
+              <>
+                <Image
+                  className={cx(classes.image, classes.floatRight)}
+                  src="/elements.jpeg"
+                  width={375}
+                  height={468.75}
+                  alt="Playing with The Elements @ Club 85 2018."
+                />
+                <Typography>{loremIpsum()}</Typography>
+              </>
+            </Section>
+            <Section title="Flying">
+              <>
+                <Image
+                  className={cx(classes.image, classes.floatRight)}
+                  src="/brighton-flight.jpeg"
+                  width={375}
+                  height={667}
+                  alt="A flight out to Brighton June 2019."
+                />
+                <Typography>{loremIpsum()}</Typography>
+              </>
+            </Section>
+            <Section title="Climbing">
+              <>
+                <Image
+                  className={cx(classes.image, classes.floatRight)}
+                  src="/fontainebleu.jpeg"
+                  width={375}
+                  height={667}
+                  alt="Into the forest of Fontainebleu for some night climbing."
+                />
+                <Typography>{loremIpsum()}</Typography>
+              </>
+            </Section>
+            <Section title="Cycling">
+              <>
+                <Box
+                  className={cx(classes.stravaEmbedding, classes.floatRight)}>
+                  <div
+                    className="strava-embed-placeholder"
+                    data-embed-type="activity"
+                    data-embed-id="8177352750"></div>
+                  <Script src="https://strava-embeds.com/embed.js"></Script>
+                </Box>
+                <Typography>{loremIpsum()}</Typography>
+              </>
+            </Section>
+            <Section title="Art Exhibitions" />
+            <Section title="Coffee">
+              <>
+                <Image
+                  className={cx(classes.image, classes.floatRight)}
+                  src="/coffee.jpeg"
+                  width={375}
+                  height={667}
+                  alt="My best attempt at a flat white."
+                />
+                <Typography>{loremIpsum()}</Typography>
+              </>
+            </Section>
+          </>
+        </Heading>
+      </Box>
+    </>
   )
 }
 
@@ -179,7 +187,7 @@ const useStyles = makeStyles()(theme => ({
     },
   },
   colourfulText: {
-    background: `-webkit-linear-gradient(45deg, ${theme.palette.primary.light} 5%, #FF8E53 90%)`,
+    background: '-webkit-linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
     WebkitBackgroundClip: 'text',
     WebkitTextFillColor: 'transparent',
   },

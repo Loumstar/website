@@ -1,11 +1,11 @@
-import React from 'react'
-import { Stylable } from 'types/react'
-import { Grid, Link, Typography, Box } from '@mui/material'
-import { makeStyles } from '@styles'
 import GitHubIcon from '@mui/icons-material/GitHub'
 import InstagramIcon from '@mui/icons-material/Instagram'
 import LinkedInIcon from '@mui/icons-material/LinkedIn'
-import { TypeScriptIcon, VercelIcon, MuiIcon, NextIcon } from './icons'
+import { Box, Grid, Link, Typography } from '@mui/material'
+import { makeStyles } from '@styles'
+import React from 'react'
+import { Stylable } from 'types/react'
+import { MuiIcon, NextIcon, TypeScriptIcon, VercelIcon } from './icons'
 
 interface FooterProps extends Stylable {
   onContactClick: () => void
@@ -23,30 +23,6 @@ export const Footer: React.FC<FooterProps> = props => {
         columnSpacing={4}
         rowGap={2}
         columns={{ sm: 2, md: 2, lg: 4 }}>
-        <Grid item className={classes.gridElement} xs={1}>
-          <Box className={classes.elementContainer}>
-            <Link
-              onClick={onHackClick}
-              className={cx(classes.text, classes.link)}
-              variant="caption">
-              Hack this website!
-            </Link>
-            <Link
-              href="/curriculum-vitae.pdf"
-              className={cx(classes.text, classes.link)}
-              variant="caption"
-              rel="noopener noreferrer"
-              target="_blank">
-              Curriculum Vitae
-            </Link>
-            <Link
-              onClick={onContactClick}
-              className={cx(classes.text, classes.link)}
-              variant="caption">
-              Contact
-            </Link>
-          </Box>
-        </Grid>
         <Grid item className={classes.gridElement} xs={1}>
           <Box className={classes.elementContainer}>
             <Typography className={classes.text} variant="caption">
@@ -69,6 +45,30 @@ export const Footer: React.FC<FooterProps> = props => {
                 <LinkedInIcon className={classes.icon} />
               </Link>
             </Box>
+          </Box>
+        </Grid>
+        <Grid item className={classes.gridElement} xs={1}>
+          <Box className={classes.elementContainer}>
+            <Link
+              onClick={onHackClick}
+              className={cx(classes.text, classes.link)}
+              variant="caption">
+              Hack this website!
+            </Link>
+            <Link
+              href="/curriculum-vitae.pdf"
+              className={cx(classes.text, classes.link)}
+              variant="caption"
+              rel="noopener noreferrer"
+              target="_blank">
+              Curriculum Vitae
+            </Link>
+            <Link
+              onClick={onContactClick}
+              className={cx(classes.text, classes.link)}
+              variant="caption">
+              Contact
+            </Link>
           </Box>
         </Grid>
         <Grid item className={classes.gridElement} xs={1}>

@@ -1,30 +1,39 @@
-import React from 'react'
-import { NextPage } from 'next'
-import { makeStyles } from 'tss-react/mui'
+import { Heading, Section } from '@components/shared'
 import { Typography } from '@mui/material'
 import { Box } from '@mui/system'
-import { Heading, Section } from '@components/shared'
+import { NextPage } from 'next'
+import Head from 'next/head'
+import { makeStyles } from 'tss-react/mui'
 
 const Design: NextPage = () => {
   const { classes } = useStyles()
   return (
-    <Box className={classes.container}>
-      <Typography variant="h1" className={classes.titleText}>
-        <span className={classes.colourfulText}>Design</span>
-      </Typography>
-      <Heading title="Mechanical Engineering">
-        <>
-          <Section title="Biofuel Engine Control System" />
-          <Section title="Miniature Racecar" />
-        </>
-      </Heading>
-      <Heading title="Product Design">
-        <>
-          <Section title="Geometric Coffee Table" />
-          <Section title="Stellated Floor Lamp" />
-        </>
-      </Heading>
-    </Box>
+    <>
+      <Head>
+        <title>Louis Manestar | Design</title>
+        <meta
+          name="description"
+          content="A portfolio of all my design projects"
+        />
+      </Head>
+      <Box className={classes.container}>
+        <Typography variant="h1" className={classes.titleText}>
+          <span className={classes.colourfulText}>Design</span>
+        </Typography>
+        <Heading title="Mechanical Engineering">
+          <>
+            <Section title="Biofuel Engine Control System" />
+            <Section title="Miniature Racecar" />
+          </>
+        </Heading>
+        <Heading title="Product Design">
+          <>
+            <Section title="Geometric Coffee Table" />
+            <Section title="Stellated Floor Lamp" />
+          </>
+        </Heading>
+      </Box>
+    </>
   )
 }
 
