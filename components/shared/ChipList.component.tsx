@@ -9,7 +9,6 @@ interface ChipListProps extends Stylable {
   chips: Array<{
     artist: string
     venue: string
-    date: string
     artistUrl?: string
     venueUrl?: string
   }>
@@ -21,7 +20,7 @@ export const ChipList: React.FC<ChipListProps> = props => {
 
   return (
     <Box className={cx(className, classes.container)}>
-      {chips.map(({ artist, venue, date, artistUrl, venueUrl }) => (
+      {chips.map(({ artist, venue, artistUrl, venueUrl }) => (
         <Chip
           key={`${artist}-${venue}`}
           className={classes.chip}
@@ -44,8 +43,6 @@ export const ChipList: React.FC<ChipListProps> = props => {
               ) : (
                 <span className={classes.venue}>{venue}</span>
               )}
-              {', '}
-              {date}
             </>
           }></Chip>
       ))}

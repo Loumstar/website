@@ -22,32 +22,14 @@ export const Footer: React.FC<FooterProps> = props => {
         container
         columnSpacing={4}
         rowGap={2}
-        columns={{ sm: 2, md: 2, lg: 4 }}>
-        <Grid item className={classes.gridElement} xs={1}>
-          <Box className={classes.elementContainer}>
-            <Typography className={classes.text} variant="caption">
-              © 2022 Louis Manestar
-            </Typography>
-            <Box className={classes.iconsFlex}>
-              <Link
-                href="https://github.com/Loumstar/"
-                aria-label="GitHub Profile">
-                <GitHubIcon className={classes.icon} />
-              </Link>
-              <Link
-                href="https://www.instagram.com/loumstarlearjet/"
-                aria-label="Instagram Profile">
-                <InstagramIcon className={classes.icon} />
-              </Link>
-              <Link
-                href="https://www.linkedin.com/in/louis-manestar/"
-                aria-label="LinkedIn Profile">
-                <LinkedInIcon className={classes.icon} />
-              </Link>
-            </Box>
-          </Box>
-        </Grid>
-        <Grid item className={classes.gridElement} xs={1}>
+        columns={{ xs: 2, sm: 2, md: 2, lg: 4 }}>
+        <Grid
+          item
+          className={classes.gridElement}
+          xs={1}
+          md={1}
+          lg={1}
+          order={{ xs: 3, sm: 3, md: 3, lg: 1 }}>
           <Box className={classes.elementContainer}>
             <Link
               onClick={onHackClick}
@@ -71,7 +53,43 @@ export const Footer: React.FC<FooterProps> = props => {
             </Link>
           </Box>
         </Grid>
-        <Grid item className={classes.gridElement} xs={1}>
+        <Grid
+          item
+          className={classes.gridElement}
+          xs={1}
+          md={1}
+          lg={1}
+          order={{ xs: 1, sm: 1, md: 1, lg: 4 }}>
+          <Box className={classes.elementContainer}>
+            <Typography className={classes.text} variant="caption">
+              © 2022 Louis Manestar
+            </Typography>
+            <Box className={classes.iconsFlex}>
+              <Link
+                href="https://github.com/Loumstar/"
+                aria-label="GitHub Profile">
+                <GitHubIcon className={classes.icon} />
+              </Link>
+              <Link
+                href="https://www.instagram.com/loumstarlearjet/"
+                aria-label="Instagram Profile">
+                <InstagramIcon className={classes.icon} />
+              </Link>
+              <Link
+                href="https://www.linkedin.com/in/louis-manestar/"
+                aria-label="LinkedIn Profile">
+                <LinkedInIcon className={classes.icon} />
+              </Link>
+            </Box>
+          </Box>
+        </Grid>
+        <Grid
+          item
+          className={classes.gridElement}
+          xs={1}
+          md={1}
+          lg={1}
+          order={{ xs: 2, sm: 2, md: 2, lg: 2 }}>
           <Box className={classes.elementContainer}>
             <Typography className={classes.text} variant="caption">
               Written with love in:
@@ -91,7 +109,13 @@ export const Footer: React.FC<FooterProps> = props => {
             </Box>
           </Box>
         </Grid>
-        <Grid item className={classes.gridElement} xs={1}>
+        <Grid
+          item
+          className={classes.gridElement}
+          xs={1}
+          md={1}
+          lg={1}
+          order={{ xs: 4, sm: 4, md: 4, lg: 3 }}>
           <Box className={classes.elementContainer}>
             <Typography className={classes.text} variant="caption">
               Hosted by:
